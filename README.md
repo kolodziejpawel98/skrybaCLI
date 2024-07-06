@@ -1,2 +1,2 @@
 # skrybaCLI
-Simple CLI application for generating monthly financial reports.
+A simple CLI application for generating monthly financial reports.
