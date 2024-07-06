@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <cstring>
 
 int main()
 {
@@ -9,20 +10,21 @@ int main()
     keypad(stdscr, TRUE);
     echo();
 
-    printw("Type 'q' to quit or press Ctrl+C to exit\n");
+    mvprintw(10, 0, "Type 'q' to quit\n");
+    char quit_string[10];
     while (true)
     {
-        ch = getch();
-        if (ch == 'q')
+        getstr(quit_string);
+        if (!strcmp(quit_string, "quit"))
         {
             printw("\nbye...");
             refresh();
-            napms(600);
+            napms(400);
             break;
         }
         else
         {
-            printw(" was pressed! Try again.\n");
+            printw("%s was pressed! Try again.\n", quit_string);
         }
         refresh();
     }
