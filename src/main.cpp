@@ -2,15 +2,30 @@
 
 int main()
 {
+    int ch;
+
     initscr();
     cbreak();
-    noecho();
     keypad(stdscr, TRUE);
+    echo();
 
-    printw("Hello, world!");
-    refresh();
-
-    getch();
+    printw("Type 'q' to quit or press Ctrl+C to exit\n");
+    while (true)
+    {
+        ch = getch();
+        if (ch == 'q')
+        {
+            printw("\nbye...");
+            refresh();
+            napms(600);
+            break;
+        }
+        else
+        {
+            printw(" was pressed! Try again.\n");
+        }
+        refresh();
+    }
 
     endwin();
 
