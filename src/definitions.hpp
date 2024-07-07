@@ -5,6 +5,17 @@
 
 #pragma once
 
+enum CurrentScreen
+{
+    MAIN_MENU = 1,
+    NEW_MONTH_PRE_INPUT,
+    NEW_MONTH_CREATOR,
+    HISTORY,
+    EXIT
+};
+
+extern CurrentScreen currentScreen;
+
 enum textColor
 {
     red_black = 1,

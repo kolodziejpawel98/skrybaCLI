@@ -6,6 +6,8 @@ namespace cursor
     unsigned short col = 0;
 }
 
+CurrentScreen currentScreen = MAIN_MENU;
+
 void initColors()
 {
     init_pair(textColor::red_black, COLOR_RED, COLOR_BLACK);
