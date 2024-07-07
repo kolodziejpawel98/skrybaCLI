@@ -32,10 +32,10 @@ std::string Button::getLabelText()
 }
 
 std::vector<Button> buttons = {
-    Button("option 1", 15, 4),
-    Button("option 2", 16, 4),
-    Button("option 3", 17, 4),
-    Button("option 4", 18, 4)};
+    Button("option 1", 25, 4),
+    Button("option 2", 26, 4),
+    Button("option 3", 27, 4),
+    Button("option 4", 28, 4)};
 
 std::vector<Button>::iterator starCursor = buttons.begin();
 

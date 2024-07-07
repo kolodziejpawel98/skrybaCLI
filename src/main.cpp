@@ -19,8 +19,8 @@ void setup()
     drawButtons();
     curs_set(0);
 
-    mvprintw(1, LEFT_MARGIN, "*S K R Y B A* CLI FINANCIAL REPORT GENERATOR");
-    mvprintw(3, LEFT_MARGIN, "Type 'q' to quit\n");
+    drawBanner();
+    mvprintw(13, LEFT_MARGIN, "Type 'q' to quit\n");
 }
 
 int main()
@@ -34,8 +34,8 @@ int main()
         switch (inputChar)
         {
         case 'q':
-            printTextInColor("Made by PK", 7, LEFT_MARGIN);
-            printTextInColor("bye...", 8, LEFT_MARGIN);
+            printTextInColor("Made by PK", 17, LEFT_MARGIN);
+            printTextInColor("bye...", 18, LEFT_MARGIN);
             refresh();
             napms(300);
             endwin();
@@ -49,11 +49,11 @@ int main()
             drawButtons();
             break;
         case '\n':
-            mvprintw(5, LEFT_MARGIN, "You chose: ");
-            mvprintw(6, LEFT_MARGIN, starCursor->getLabelText().c_str());
+            mvprintw(15, LEFT_MARGIN, "You chose: ");
+            mvprintw(16, LEFT_MARGIN, starCursor->getLabelText().c_str());
             break;
         default:
-            mvprintw(5, LEFT_MARGIN, "%c was pressed! Try again.", inputChar);
+            mvprintw(15, LEFT_MARGIN, "%c was pressed! Try again.", inputChar);
             break;
         }
     }
