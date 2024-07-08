@@ -10,7 +10,10 @@ add_executable(skrybaCLI
     src/button.cpp
     src/definitions.cpp
     src/decorations.cpp
-    src/screens/screen_main_menu.cpp
+    src/screens/main_menu.cpp
+    src/screens/new_month_intro.cpp
+    src/screens/new_month_creator.cpp
+    src/screens/history.cpp
 )
 
 find_package(Curses REQUIRED)

@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-#include "screens/screen_main_menu.hpp"
+#include "screens/main_menu.hpp"
 
 void setup()
 {
@@ -33,7 +33,7 @@ int main()
         case MAIN_MENU:
             mainmenu->loop();
             break;
-        case NEW_MONTH_PRE_INPUT:
+        case NEW_MONTH_INTRO:
 
             break;
         case NEW_MONTH_CREATOR:

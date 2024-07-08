@@ -8,7 +8,7 @@
 enum CurrentScreen
 {
     MAIN_MENU = 1,
-    NEW_MONTH_PRE_INPUT,
+    NEW_MONTH_INTRO,
     NEW_MONTH_CREATOR,
     HISTORY,
     EXIT
