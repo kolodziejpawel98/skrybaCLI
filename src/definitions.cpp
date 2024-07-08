@@ -6,7 +6,7 @@ namespace cursor
     unsigned short col = 0;
 }
 
-CurrentScreen currentScreen = MAIN_MENU;
+int currentScreen = MAIN_MENU;
 
 void initColors()
 {

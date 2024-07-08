@@ -9,7 +9,6 @@ void MainMenu::loop()
     while (currentScreen == MAIN_MENU)
     {
         inputChar = getch();
-
         switch (inputChar)
         {
         case 'q':
@@ -29,8 +28,12 @@ void MainMenu::loop()
             drawButtons();
             break;
         case '\n':
-            mvprintw(15, LEFT_MARGIN, "You chose: ");
-            mvprintw(16, LEFT_MARGIN, starCursor->getLabelText().c_str());
+            // debugPrint("starCursor->getPointingToScreen() =  " + std::to_string(starCursor->getPointingToScreen()));
+            // debugPrint("ENTER");
+
+            // mvprintw(15, LEFT_MARGIN, "You chose: ");
+            // mvprintw(16, LEFT_MARGIN, starCursor->getLabelText().c_str());
+            currentScreen = starCursor->getPointingToScreen();
             break;
         default:
             mvprintw(15, LEFT_MARGIN, "%c was pressed! Try again.", inputChar);

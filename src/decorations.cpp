@@ -31,6 +31,6 @@ void debugPrint(std::string text)
 {
     int oldRow, oldCol;
     getyx(stdscr, oldRow, oldCol);
-    mvprintw(40, 15, text.c_str());
+    mvprintw(30, 25, text.c_str());
     move(oldRow, oldCol);
 }

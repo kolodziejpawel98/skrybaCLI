@@ -5,9 +5,13 @@
 #include "definitions.hpp"
 #include "button.hpp"
 
-Button::Button(std::string labelText, uint16_t row, uint16_t column) : labelText(labelText),
-                                                                       row(row),
-                                                                       column(column) {}
+Button::Button(std::string labelText,
+               uint16_t row,
+               uint16_t column,
+               int pointingToScreen) : labelText(labelText),
+                                       row(row),
+                                       column(column),
+                                       pointingToScreen(pointingToScreen) {}
 
 void Button::draw(bool isCursorOnMe)
 {
@@ -31,11 +35,15 @@ std::string Button::getLabelText()
     return labelText;
 }
 
+int Button::getPointingToScreen()
+{
+    return pointingToScreen;
+}
+
 std::vector<Button> buttons = {
-    Button("option 1", 25, 4),
-    Button("option 2", 26, 4),
-    Button("option 3", 27, 4),
-    Button("option 4", 28, 4)};
+    Button("Create new report", 25, 4, NEW_MONTH_INTRO),
+    Button("Previous reports", 26, 4, HISTORY),
+    Button("Exit", 27, 4, EXIT)};
 
 std::vector<Button>::iterator starCursor = buttons.begin();
 

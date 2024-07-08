@@ -14,7 +14,7 @@ enum CurrentScreen
     EXIT
 };
 
-extern CurrentScreen currentScreen;
+extern int currentScreen;
 
 enum textColor
 {

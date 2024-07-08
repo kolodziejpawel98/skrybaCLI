@@ -6,8 +6,9 @@ void NewMonthCreator::setup()
 
 void NewMonthCreator::loop()
 {
-    while (currentScreen == NEW_MONTH_CREATOR)
+    while (true)
     {
+        debugPrint("I'm in NEW MONTH CREATOR SCREEN");
     }
 }
 

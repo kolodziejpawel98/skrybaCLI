@@ -8,6 +8,7 @@ void History::loop()
 {
     while (currentScreen == HISTORY)
     {
+        debugPrint("I'm in HISTORY SCREEN");
     }
 }
 

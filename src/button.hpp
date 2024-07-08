@@ -7,13 +7,15 @@
 class Button
 {
 public:
-    Button(std::string, uint16_t, uint16_t);
+    Button(std::string, uint16_t, uint16_t, int);
     void draw(bool isCursorOnMe = false);
     std::string getLabelText();
+    int getPointingToScreen();
 
 private:
     std::string labelText;
     uint16_t row, column;
+    int pointingToScreen;
 };
 
 extern std::vector<Button> buttons;
