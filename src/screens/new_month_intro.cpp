@@ -2,32 +2,35 @@
 
 void NewMonthIntro::setup()
 {
-    debugPrint("NEW MONTH INTRO");
+    clear();
     refresh();
-    buttons.clear();
-    buttons.emplace_back(Button("Create new report", 25, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Previous reports", 26, 4, HISTORY));
-    buttons.emplace_back(Button("Cofnij", 27, 4, MAIN_MENU));
+    drawFrame();
+    drawBanner();
+    debugPrint("NEW MONTH INTRO");
+    buttons.emplace_back(Button("Dalej", 25, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Cofnij", 26, 4, MAIN_MENU));
+    if (!buttons.empty())
+    {
+        starCursor = buttons.begin();
+    }
+    drawButtons(buttons, starCursor);
 }
 
 void NewMonthIntro::loop()
 {
+    refresh();
     while (currentScreen == NEW_MONTH_INTRO)
     {
         inputChar = getch();
         switch (inputChar)
         {
         case KEY_UP:
-            debugPrint("KEY UP");
-            refresh();
-            goToUpperButton();
-            drawButtons();
+            goToUpperButton(buttons, starCursor);
+            drawButtons(buttons, starCursor);
             break;
         case KEY_DOWN:
-            debugPrint("LEY DOWN");
-            refresh();
-            goToLowerButton();
-            drawButtons();
+            goToLowerButton(buttons, starCursor);
+            drawButtons(buttons, starCursor);
             break;
         case '\n': // ENTER
             currentScreen = starCursor->getPointingToScreen();

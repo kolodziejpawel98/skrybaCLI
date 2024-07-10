@@ -22,14 +22,9 @@ void setup()
     start_color();
     initColors();
     drawFrame();
-    buttons.clear();
-    buttons.emplace_back(Button("Create new report", 25, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Previous reports", 26, 4, HISTORY));
-    buttons.emplace_back(Button("Exit", 27, 4, EXIT));
-    drawButtons();
     curs_set(0);
     drawBanner();
-    mvprintw(13, LEFT_MARGIN, "Type 'q' to quit\n");
+    refresh();
 }
 
 void exitText()

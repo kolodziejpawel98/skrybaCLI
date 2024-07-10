@@ -2,28 +2,35 @@
 
 void NewMonthCreator::setup()
 {
-    debugPrint("NEW MONTH SETUP");
+    clear();
     refresh();
+    drawFrame();
+    drawBanner();
+    debugPrint("NEW MONTH SETUP");
     buttons.clear();
-    buttons.emplace_back(Button("Create new report", 25, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Previous reports", 26, 4, HISTORY));
     buttons.emplace_back(Button("Cofnij", 27, 4, NEW_MONTH_INTRO));
+    if (!buttons.empty())
+    {
+        starCursor = buttons.begin();
+    }
+    drawButtons(buttons, starCursor);
 }
 
 void NewMonthCreator::loop()
 {
+    refresh();
     while (currentScreen == NEW_MONTH_CREATOR)
     {
         inputChar = getch();
         switch (inputChar)
         {
         case KEY_UP:
-            goToUpperButton();
-            drawButtons();
+            goToUpperButton(buttons, starCursor);
+            drawButtons(buttons, starCursor);
             break;
         case KEY_DOWN:
-            goToLowerButton();
-            drawButtons();
+            goToLowerButton(buttons, starCursor);
+            drawButtons(buttons, starCursor);
             break;
         case '\n': // ENTER
             currentScreen = starCursor->getPointingToScreen();

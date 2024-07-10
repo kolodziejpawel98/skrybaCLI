@@ -18,6 +18,7 @@ int main()
     std::unique_ptr<History> history = std::make_unique<History>();
 
     setup();
+    refresh();
     while (true)
     {
 

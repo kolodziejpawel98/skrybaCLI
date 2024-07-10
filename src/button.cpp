@@ -40,14 +40,7 @@ int Button::getPointingToScreen()
     return pointingToScreen;
 }
 
-std::vector<Button> buttons = {
-    Button("Create new report", 25, 4, NEW_MONTH_INTRO),
-    Button("Previous reports", 26, 4, HISTORY),
-    Button("Exit", 27, 4, EXIT)};
-
-std::vector<Button>::iterator starCursor = buttons.begin();
-
-void goToLowerButton()
+void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
 {
     if (buttons.size() > 0)
     {
@@ -62,7 +55,7 @@ void goToLowerButton()
     }
 }
 
-void goToUpperButton()
+void goToUpperButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
 {
     if (buttons.size() > 0)
     {
@@ -77,7 +70,7 @@ void goToUpperButton()
     }
 }
 
-void drawButtons()
+void drawButtons(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
 {
     if (buttons.size() > 0)
     {

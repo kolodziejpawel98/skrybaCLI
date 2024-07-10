@@ -17,10 +17,6 @@ private:
     uint16_t row, column;
     int pointingToScreen;
 };
-
-extern std::vector<Button> buttons;
-extern std::vector<Button>::iterator starCursor;
-
-void goToLowerButton();
-void goToUpperButton();
-void drawButtons();
+void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);
+void goToUpperButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);
+void drawButtons(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);

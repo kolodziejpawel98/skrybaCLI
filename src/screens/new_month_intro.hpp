@@ -16,4 +16,6 @@ public:
     void setCurrentScreen() override;
 
     int inputChar;
+    std::vector<Button> buttons;
+    std::vector<Button>::iterator starCursor;
 };
