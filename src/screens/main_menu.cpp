@@ -8,9 +8,9 @@ void MainMenu::setup()
     drawBanner();
     debugPrint("MAIN MENU");
     buttons.clear();
-    buttons.emplace_back(Button("Create new report", 25, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Previous reports", 26, 4, HISTORY));
-    buttons.emplace_back(Button("Cofnij", 27, 4, EXIT));
+    buttons.emplace_back(Button("Create new report", 38, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Previous reports", 39, 4, HISTORY));
+    buttons.emplace_back(Button("Cofnij", 40, 4, EXIT));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();

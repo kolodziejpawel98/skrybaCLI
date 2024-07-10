@@ -7,8 +7,8 @@ void NewMonthIntro::setup()
     drawFrame();
     drawBanner();
     debugPrint("NEW MONTH INTRO");
-    buttons.emplace_back(Button("Dalej", 25, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Cofnij", 26, 4, MAIN_MENU));
+    buttons.emplace_back(Button("Dalej", 38, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Cofnij", 39, 4, MAIN_MENU));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();

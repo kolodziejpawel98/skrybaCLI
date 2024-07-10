@@ -8,7 +8,7 @@ void History::setup()
     drawBanner();
     debugPrint("HISTORY");
     buttons.clear();
-    buttons.emplace_back(Button("Cofnij", 25, 4, MAIN_MENU));
+    buttons.emplace_back(Button("Cofnij", 38, 4, MAIN_MENU));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
