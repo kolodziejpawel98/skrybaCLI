@@ -2,6 +2,12 @@
 
 void MainMenu::setup()
 {
+    debugPrint("MAIN MENU");
+    refresh();
+    buttons.clear();
+    buttons.emplace_back(Button("Create new report", 25, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Previous reports", 26, 4, HISTORY));
+    buttons.emplace_back(Button("Cofnij", 27, 4, EXIT));
 }
 
 void MainMenu::loop()
@@ -11,32 +17,16 @@ void MainMenu::loop()
         inputChar = getch();
         switch (inputChar)
         {
-        case 'q':
-            printTextInColor("Made by PK", 17, LEFT_MARGIN);
-            printTextInColor("bye...", 18, LEFT_MARGIN);
-            refresh();
-            napms(300);
-            endwin();
-            currentScreen = EXIT;
-            break;
         case KEY_UP:
-            upperButton();
+            goToUpperButton();
             drawButtons();
             break;
         case KEY_DOWN:
-            lowerButton();
+            goToLowerButton();
             drawButtons();
             break;
-        case '\n':
-            // debugPrint("starCursor->getPointingToScreen() =  " + std::to_string(starCursor->getPointingToScreen()));
-            // debugPrint("ENTER");
-
-            // mvprintw(15, LEFT_MARGIN, "You chose: ");
-            // mvprintw(16, LEFT_MARGIN, starCursor->getLabelText().c_str());
+        case '\n': // ENTER
             currentScreen = starCursor->getPointingToScreen();
-            break;
-        default:
-            mvprintw(15, LEFT_MARGIN, "%c was pressed! Try again.", inputChar);
             break;
         }
     }

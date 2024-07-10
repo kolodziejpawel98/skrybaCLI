@@ -16,5 +16,4 @@ public:
     void setCurrentScreen() override;
 
     int inputChar;
-    std::string chosenOption;
 };

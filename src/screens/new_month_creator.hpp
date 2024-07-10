@@ -14,4 +14,6 @@ public:
     void setup() override;
     void loop() override;
     void setCurrentScreen() override;
+
+    int inputChar;
 };

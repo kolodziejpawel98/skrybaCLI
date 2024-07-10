@@ -47,34 +47,43 @@ std::vector<Button> buttons = {
 
 std::vector<Button>::iterator starCursor = buttons.begin();
 
-void lowerButton()
+void goToLowerButton()
 {
-    if (starCursor != buttons.end() - 1)
+    if (buttons.size() > 0)
     {
-        ++starCursor;
-    }
-    else
-    {
-        starCursor = buttons.begin();
+        if (starCursor != buttons.end() - 1)
+        {
+            ++starCursor;
+        }
+        else
+        {
+            starCursor = buttons.begin();
+        }
     }
 }
 
-void upperButton()
+void goToUpperButton()
 {
-    if (starCursor != buttons.begin())
+    if (buttons.size() > 0)
     {
-        --starCursor;
-    }
-    else
-    {
-        starCursor = buttons.end() - 1;
+        if (starCursor != buttons.begin())
+        {
+            --starCursor;
+        }
+        else
+        {
+            starCursor = buttons.end() - 1;
+        }
     }
 }
 
 void drawButtons()
 {
-    for (auto &button : buttons)
-        button.draw();
-    starCursor->draw(true);
-    attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
+    if (buttons.size() > 0)
+    {
+        for (auto &button : buttons)
+            button.draw();
+        starCursor->draw(true);
+        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
+    }
 }

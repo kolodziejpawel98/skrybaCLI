@@ -2,7 +2,9 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
-
+#include <memory>
+#include "decorations.hpp"
+#include "button.hpp"
 #pragma once
 
 enum CurrentScreen
@@ -28,6 +30,8 @@ namespace cursor
     extern unsigned short col;
 }
 
+void setup();
+void exitText();
 void initColors();
 
 const uint8_t LEFT_MARGIN = 4;

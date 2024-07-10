@@ -21,6 +21,6 @@ private:
 extern std::vector<Button> buttons;
 extern std::vector<Button>::iterator starCursor;
 
-void lowerButton();
-void upperButton();
+void goToLowerButton();
+void goToUpperButton();
 void drawButtons();

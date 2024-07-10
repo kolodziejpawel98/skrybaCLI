@@ -9,24 +9,9 @@
 #include "screens/new_month_creator.hpp"
 #include "screens/history.hpp"
 
-void setup()
-{
-    initscr();
-    raw();
-    keypad(stdscr, TRUE);
-    noecho();
-    start_color();
-    initColors();
-    drawFrame();
-    drawButtons();
-    curs_set(0);
-
-    drawBanner();
-    mvprintw(13, LEFT_MARGIN, "Type 'q' to quit\n");
-}
-
 int main()
 {
+
     std::unique_ptr<MainMenu> mainmenu = std::make_unique<MainMenu>();
     std::unique_ptr<NewMonthIntro> newMonthIntro = std::make_unique<NewMonthIntro>();
     std::unique_ptr<NewMonthCreator> newMonthCreator = std::make_unique<NewMonthCreator>();
@@ -55,14 +40,13 @@ int main()
             history->loop();
             break;
         case EXIT:
+            exitText();
             return 0;
-            break;
         default:
             return 0;
             break;
         }
     }
-
     endwin();
     return 0;
 }
