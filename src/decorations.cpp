@@ -27,10 +27,10 @@ void printTextInColor(std::string text, unsigned short row, unsigned short col)
     mvchgat(row, col, text.length(), A_BOLD, textColor::red_black, NULL);
 }
 
-void debugPrint(std::string text)
+void debugPrint(std::string text, int row, int col)
 {
     int oldRow, oldCol;
     getyx(stdscr, oldRow, oldCol);
-    mvprintw(30, 25, text.c_str());
+    mvprintw(row, col, text.c_str());
     move(oldRow, oldCol);
 }

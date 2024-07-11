@@ -6,4 +6,4 @@
 void drawFrame();
 void drawBanner();
 void printTextInColor(std::string, unsigned short, unsigned short);
-void debugPrint(std::string);
+void debugPrint(std::string, int = 30, int = 25);
