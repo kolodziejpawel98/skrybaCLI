@@ -11,6 +11,8 @@ public:
     void draw(bool isCursorOnMe = false);
     std::string getLabelText();
     int getPointingToScreen();
+    uint16_t getCol();
+    uint16_t getRow();
 
 private:
     std::string labelText;

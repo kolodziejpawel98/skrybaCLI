@@ -40,6 +40,16 @@ int Button::getPointingToScreen()
     return pointingToScreen;
 }
 
+uint16_t Button::getCol()
+{
+    return column;
+}
+
+uint16_t Button::getRow()
+{
+    return row;
+}
+
 void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
 {
     if (buttons.size() > 0)

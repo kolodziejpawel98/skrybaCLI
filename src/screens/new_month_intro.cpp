@@ -7,7 +7,7 @@ void NewMonthIntro::setup()
     drawFrame();
     drawBanner();
     debugPrint("NEW MONTH INTRO");
-    buttons.emplace_back(Button("Dalej", 38, 4, NEW_MONTH_CREATOR));
+    buttons.emplace_back(Button(inputWord, 38, 4, NEW_MONTH_CREATOR));
     buttons.emplace_back(Button("Cofnij", 39, 4, MAIN_MENU));
     if (!buttons.empty())
     {
@@ -16,23 +16,7 @@ void NewMonthIntro::setup()
     drawButtons(buttons, starCursor);
     printTextInColor(inputWord, 30, LEFT_MARGIN + 40);
 
-    // #####################
-    start_color();
-    init_pair(1, COLOR_RED, COLOR_BLACK);
-    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-
-    const char *textRed = "mc";
-    const char *textYellow = "donald's";
-    move(10, 10);
-    attron(COLOR_PAIR(1));
-    printw("%s", textRed);
-    attroff(COLOR_PAIR(1));
-
-    attron(COLOR_PAIR(2));
-    printw("%s", textYellow);
-    attroff(COLOR_PAIR(2));
-    refresh();
-    // #####################
+    inputWord = "[]";
 }
 
 void NewMonthIntro::loop()
@@ -42,7 +26,11 @@ void NewMonthIntro::loop()
     while (currentScreen == NEW_MONTH_INTRO)
     {
         inputChar = getch();
-        if (std::isalpha(inputChar) || inputChar == '\n' || inputChar == KEY_UP || inputChar == KEY_DOWN)
+        if (std::isalpha(inputChar) ||
+            inputChar == '\n' ||
+            inputChar == KEY_UP ||
+            inputChar == KEY_DOWN ||
+            inputChar == KEY_BACKSPACE)
         {
             switch (inputChar)
             {
@@ -59,9 +47,20 @@ void NewMonthIntro::loop()
                 inputWord = "[]";
                 currentScreen = starCursor->getPointingToScreen();
                 break;
+            case KEY_BACKSPACE:
+                if (inputWord.length() > 2)
+                {
+                    debugPrint("USUWANA LITERA: " + std::string(1, inputWord.at(inputWord.length() - 2)), 10, 10);
+                    inputWord.erase(inputWord.length() - 2, 1);
+                    printTextInColor(inputWord, 38, LEFT_MARGIN + 5);
+                }
+                break;
             default:
-                inputWord.insert(inputWord.size() - 1, 1, inputChar);
-                printTextInColor(inputWord, 30, LEFT_MARGIN + 40);
+                if (starCursor->getRow() == 38)
+                {
+                    inputWord.insert(inputWord.size() - 1, 1, inputChar);
+                    printTextInColor(inputWord, 38, LEFT_MARGIN + 5);
+                }
                 break;
             }
         }
