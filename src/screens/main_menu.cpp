@@ -6,7 +6,6 @@ void MainMenu::setup()
     refresh();
     drawFrame();
     drawBanner();
-    debugPrint("MAIN MENU");
     buttons.clear();
     buttons.emplace_back(Button("Create new report", 38, 4, NEW_MONTH_INTRO));
     buttons.emplace_back(Button("Previous reports", 39, 4, HISTORY));

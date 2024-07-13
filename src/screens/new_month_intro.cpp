@@ -13,7 +13,7 @@ void NewMonthIntro::setup()
         starCursor = buttons.begin();
     }
     drawButtons(buttons, starCursor);
-    printTextInColor(inputWord, 30, LEFT_MARGIN + 40);
+    printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
 }
 
 void NewMonthIntro::loop()
@@ -21,52 +21,44 @@ void NewMonthIntro::loop()
 
     while (currentScreen == NEW_MONTH_INTRO)
     {
-        printTextInColor("Month name: " + monthName, 10, LEFT_MARGIN + 40);
-        refresh();
+        // refresh();
         inputChar = getch();
-        if (std::isalpha(inputChar) ||
-            inputChar == '\n' ||
-            inputChar == KEY_UP ||
-            inputChar == KEY_DOWN ||
-            inputChar == KEY_BACKSPACE)
+        switch (inputChar)
         {
-            switch (inputChar)
+        case KEY_UP:
+            goToUpperButton(buttons, starCursor);
+            drawButtons(buttons, starCursor);
+            break;
+        case KEY_DOWN:
+            goToLowerButton(buttons, starCursor);
+            drawButtons(buttons, starCursor);
+            break;
+        case '\n': // ENTER
+            monthName = inputWord.substr(1, inputWord.size() - 2);
+            inputWord = "[]";
+            currentScreen = starCursor->getPointingToScreen();
+            break;
+        case KEY_BACKSPACE:
+            if (inputWord.length() > 2)
             {
-            case KEY_UP:
-                goToUpperButton(buttons, starCursor);
-                drawButtons(buttons, starCursor);
-                break;
-            case KEY_DOWN:
-                goToLowerButton(buttons, starCursor);
-                drawButtons(buttons, starCursor);
-                break;
-            case '\n': // ENTER
-                monthName = inputWord.substr(1, inputWord.size() - 2);
-                inputWord = "[]";
-                currentScreen = starCursor->getPointingToScreen();
-                break;
-            case KEY_BACKSPACE:
-                if (inputWord.length() > 2)
-                {
-                    inputWord.erase(inputWord.length() - 2, 1);
-                    clear();
-                    refresh();
-                    drawFrame();
-                    drawBanner();
-                    drawButtons(buttons, starCursor);
-                    printTextInColor(inputWord, 30, LEFT_MARGIN + 40);
-                }
-                break;
-            default:
-                inputWord.insert(inputWord.size() - 1, 1, inputChar);
+                inputWord.erase(inputWord.length() - 2, 1);
                 clear();
                 refresh();
                 drawFrame();
                 drawBanner();
                 drawButtons(buttons, starCursor);
-                printTextInColor(inputWord, 30, LEFT_MARGIN + 40);
-                break;
+                printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
             }
+            break;
+        default:
+            inputWord.insert(inputWord.size() - 1, 1, inputChar);
+            clear();
+            refresh();
+            drawFrame();
+            drawBanner();
+            drawButtons(buttons, starCursor);
+            printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
+            break;
         }
     }
 }

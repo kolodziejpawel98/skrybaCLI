@@ -33,6 +33,7 @@ int main()
             newMonthIntro->loop();
             break;
         case NEW_MONTH_CREATOR:
+            newMonthCreator->monthName = newMonthIntro->monthName;
             newMonthCreator->setup();
             newMonthCreator->loop();
             break;

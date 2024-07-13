@@ -21,10 +21,10 @@ void drawBanner()
     mvprintw(7, LEFT_MARGIN, "                                                                              ");
 }
 
-void printTextInColor(std::string text, unsigned short row, unsigned short col)
+void printTextInColor(std::string text, unsigned short row, unsigned short col, int textColor)
 {
     mvprintw(row, col, text.c_str());
-    mvchgat(row, col, text.length(), A_BOLD, textColor::red_black, NULL);
+    mvchgat(row, col, text.length(), A_BOLD, textColor, NULL);
 }
 
 void debugPrint(std::string text, int row, int col)

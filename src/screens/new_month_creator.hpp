@@ -16,6 +16,8 @@ public:
     void setCurrentScreen() override;
 
     int inputChar;
+    std::string monthName = "";
+    std::string inputWord = "[]";
     std::vector<Button> buttons;
     std::vector<Button>::iterator starCursor;
 };

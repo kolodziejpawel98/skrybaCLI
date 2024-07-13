@@ -29,8 +29,8 @@ void setup()
 
 void exitText()
 {
-    printTextInColor("Made by PK", 27, LEFT_MARGIN + 40);
-    printTextInColor("bye...", 28, LEFT_MARGIN + 40);
+    printTextInColor("Made by PK", 27, LEFT_MARGIN + 40, textColor::red_black);
+    printTextInColor("bye...", 28, LEFT_MARGIN + 40, textColor::red_black);
     refresh();
     napms(500);
     endwin();
