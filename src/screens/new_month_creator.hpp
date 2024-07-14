@@ -7,6 +7,7 @@
 #include "../definitions.hpp"
 #include "../decorations.hpp"
 #include "../button.hpp"
+#include "../purchase.hpp"
 
 class NewMonthCreator : public Screen
 {
@@ -20,4 +21,5 @@ public:
     std::string inputWord = "[]";
     std::vector<Button> buttons;
     std::vector<Button>::iterator starCursor;
+    std::vector<Purchase> purchases;
 };

@@ -35,3 +35,12 @@ void exitText()
     napms(500);
     endwin();
 }
+
+std::vector<std::string> categories = {
+    "spozywka",
+    "rzeczy",
+    "oplaty stale",
+    "transport (bez jakdojade)",
+    "transport (jakdojade)",
+    "jedzenie na miescie",
+    "jedzenie zamawiane"};

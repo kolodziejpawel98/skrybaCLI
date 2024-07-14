@@ -35,3 +35,4 @@ void exitText();
 void initColors();
 
 const uint8_t LEFT_MARGIN = 4;
+extern std::vector<std::string> categories;
