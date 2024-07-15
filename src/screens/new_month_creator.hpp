@@ -7,6 +7,7 @@
 #include "../definitions.hpp"
 #include "../decorations.hpp"
 #include "../button.hpp"
+#include "../inputLabel.hpp"
 #include "../purchase.hpp"
 
 class NewMonthCreator : public Screen
@@ -22,4 +23,6 @@ public:
     std::vector<Button> buttons;
     std::vector<Button>::iterator starCursor;
     std::vector<Purchase> purchases;
+    std::vector<InterfaceElement> interfaceElements;
+    std::vector<InterfaceElement>::iterator starCursorOnInterfaceElement;
 };

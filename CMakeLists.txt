@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(skrybaCLI
     src/main.cpp
     src/button.cpp
+    src/inputLabel.cpp
     src/definitions.cpp
     src/decorations.cpp
     src/purchase.cpp

@@ -6,9 +6,25 @@ void NewMonthCreator::setup()
     refresh();
     drawFrame();
     drawBanner();
-    debugPrint("MONTH NAME: " + monthName);
+    interfaceElements.clear();
+    interfaceElements.push_back(Button("Cofnij", 20, LEFT_MARGIN, NEW_MONTH_INTRO));
+    interfaceElements.push_back(InputLabel("[]", 21, LEFT_MARGIN));
+    interfaceElements.push_back(InputLabel("[]", 22, LEFT_MARGIN));
+    if (!interfaceElements.empty())
+    {
+        starCursorOnInterfaceElement = interfaceElements.begin();
+    }
+    for (auto &interfaceElement : interfaceElements)
+    {
+        interfaceElement.temporaryDraw();
+    }
+
+    purchases.push_back(Purchase("[]", 0, "[]"));
     buttons.clear();
-    buttons.emplace_back(Button("Cofnij", 38, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button(purchases[0].category, 36, 4, EMPTY));
+    buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
+    buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
+    buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
@@ -21,6 +37,7 @@ void NewMonthCreator::loop()
 
     while (currentScreen == NEW_MONTH_CREATOR)
     {
+        printTextInColor("Month: " + monthName, 8, LEFT_MARGIN, textColor::white_black);
         // refresh();
         inputChar = getch();
         switch (inputChar)
@@ -34,9 +51,23 @@ void NewMonthCreator::loop()
             drawButtons(buttons, starCursor);
             break;
         case '\n': // ENTER
-            monthName = inputWord.substr(1, inputWord.size() - 2);
-            inputWord = "[]";
-            currentScreen = starCursor->getPointingToScreen();
+            // inputWord.substr(1, inputWord.size() - 2)
+            if (starCursor->getLabelText() == "Cofnij")
+            {
+                currentScreen = starCursor->getPointingToScreen();
+            }
+            else
+            {
+                std::string newPurchaseCellText = inputWord.substr(1, inputWord.size() - 2);
+                starCursor->setLabelText(newPurchaseCellText);
+                inputWord = "[]";
+                clear();
+                refresh();
+                drawFrame();
+                drawBanner();
+                drawButtons(buttons, starCursor);
+                printTextInColor("[" + newPurchaseCellText + "]", starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
+            }
             break;
         case KEY_BACKSPACE:
             if (inputWord.length() > 2)
@@ -47,17 +78,18 @@ void NewMonthCreator::loop()
                 drawFrame();
                 drawBanner();
                 drawButtons(buttons, starCursor);
-                printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
+                printTextInColor("Purchase: " + inputWord, 35, LEFT_MARGIN, textColor::white_black);
             }
             break;
         default:
             inputWord.insert(inputWord.size() - 1, 1, inputChar);
+            starCursor->setLabelText(inputWord);
             clear();
             refresh();
             drawFrame();
             drawBanner();
             drawButtons(buttons, starCursor);
-            printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
+            printTextInColor(starCursor->getLabelText(), starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
             break;
         }
     }

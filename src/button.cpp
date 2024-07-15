@@ -30,9 +30,31 @@ void Button::draw(bool isCursorOnMe)
     }
 }
 
+void Button::temporaryDraw(bool isCursorOnMe)
+{
+    std::string buttonAndText;
+    if (!isCursorOnMe)
+    {
+        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
+        buttonAndText = "[ ]  " + labelText;
+        mvprintw(row, column, buttonAndText.c_str());
+    }
+    else
+    {
+        attron(A_BOLD | COLOR_PAIR(textColor::red_black));
+        buttonAndText = "[*]  " + labelText;
+        mvprintw(row, column, buttonAndText.c_str());
+    }
+}
+
 std::string Button::getLabelText()
 {
     return labelText;
+}
+
+std::string Button::setLabelText(std::string newName)
+{
+    labelText = newName;
 }
 
 int Button::getPointingToScreen()
