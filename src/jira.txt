@@ -1,0 +1,5 @@
+###### TODO: ######
+- change names in interface to english,
+- add autofill,
+- saving to JSON,
+- add subbuttons,
