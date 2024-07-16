@@ -6,24 +6,26 @@ void NewMonthCreator::setup()
     refresh();
     drawFrame();
     drawBanner();
-    interfaceElements.clear();
-    interfaceElements.push_back(Button("Cofnij", 20, LEFT_MARGIN, NEW_MONTH_INTRO));
-    interfaceElements.push_back(InputLabel("[]", 21, LEFT_MARGIN));
-    interfaceElements.push_back(InputLabel("[]", 22, LEFT_MARGIN));
-    if (!interfaceElements.empty())
-    {
-        starCursorOnInterfaceElement = interfaceElements.begin();
-    }
-    for (auto &interfaceElement : interfaceElements)
-    {
-        interfaceElement.temporaryDraw();
-    }
 
-    purchases.push_back(Purchase("[]", 0, "[]"));
+    // interfaceElements.clear();
+    // interfaceElements.push_back(Button("Cofnij", 20, LEFT_MARGIN, NEW_MONTH_INTRO));
+    // interfaceElements.push_back(InputLabel("[]", 21, LEFT_MARGIN));
+    // interfaceElements.push_back(InputLabel("[]", 22, LEFT_MARGIN));
+    // if (!interfaceElements.empty())
+    // {
+    //     starCursorOnInterfaceElement = interfaceElements.begin();
+    // }
+    // for (auto &interfaceElement : interfaceElements)
+    // {
+    //     interfaceElement.temporaryDraw();
+    // }
+
+    // purchases.push_back(Purchase("[]", 0, "[]"));
     buttons.clear();
-    buttons.emplace_back(Button(purchases[0].category, 36, 4, EMPTY));
-    buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
-    buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
+    // buttons.emplace_back(Button(purchases[0].category, 36, 4, EMPTY));
+    // buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
+    // buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
+    buttons.emplace_back(Button("Button1", 39, 4, 1), Button("Button2", 39, 8, 1));
     buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {

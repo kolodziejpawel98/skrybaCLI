@@ -10,6 +10,7 @@ class Button : public InterfaceElement
 {
 public:
     Button(std::string, uint16_t, uint16_t, int);
+    Button(std::vector<Button>);
     void draw(bool isCursorOnMe = false);
     void temporaryDraw(bool isCursorOnMe = false) override;
     std::string getLabelText();
@@ -22,6 +23,7 @@ private:
     std::string labelText;
     uint16_t row, column;
     int pointingToScreen;
+    std::vector<Button> subButtons;
 };
 
 void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);

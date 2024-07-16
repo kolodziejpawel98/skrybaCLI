@@ -13,6 +13,8 @@ Button::Button(std::string labelText,
                                        column(column),
                                        pointingToScreen(pointingToScreen) {}
 
+Button::Button(std::vector<Button> subButtons) : subButtons(subButtons){};
+
 void Button::draw(bool isCursorOnMe)
 {
     std::string buttonAndText;
