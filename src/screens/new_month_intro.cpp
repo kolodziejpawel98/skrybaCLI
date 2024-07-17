@@ -13,7 +13,19 @@ void NewMonthIntro::setup()
         starCursor = buttons.begin();
     }
     drawButtons(buttons, starCursor);
-    printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
+    printTextInColor("Month name: ", 36, LEFT_MARGIN, textColor::white_black);
+}
+
+std::string NewMonthIntro::checkAutofill(std::string wordPrefix)
+{
+    for (const auto &word : autofillDictionary)
+    {
+        if (word.compare(0, wordPrefix.length(), wordPrefix) == 0)
+        {
+            return word;
+        }
+    }
+    return "";
 }
 
 void NewMonthIntro::loop()
@@ -47,17 +59,49 @@ void NewMonthIntro::loop()
                 drawFrame();
                 drawBanner();
                 drawButtons(buttons, starCursor);
-                printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
+                printTextInColor("Month name: " + inputWord, 36, LEFT_MARGIN, textColor::white_black);
             }
             break;
-        default:
-            inputWord.insert(inputWord.size() - 1, 1, inputChar);
+        case '\t':
+
+            if (inputWord.length() > 2)
+            {
+                inputWord = "[" + checkAutofill(inputWord.substr(1, inputWord.length() - 2)) + "]";
+            }
             clear();
             refresh();
             drawFrame();
             drawBanner();
             drawButtons(buttons, starCursor);
-            printTextInColor("Month name: " + inputWord, 37, LEFT_MARGIN, textColor::white_black);
+            printTextInColor(
+                inputWord,
+                37,
+                LEFT_MARGIN,
+                textColor::red_black);
+            break;
+        default:
+            inputWord.insert(inputWord.size() - 1, 1, inputChar);
+
+            if (inputWord.length() > 2)
+            {
+                clear();
+                refresh();
+                drawFrame();
+                drawBanner();
+                drawButtons(buttons, starCursor);
+                printTextInColor("Month name: ", 36, LEFT_MARGIN, textColor::white_black);
+
+                printTextInColor(
+                    checkAutofill(inputWord.substr(1, inputWord.length() - 2)),
+                    37,
+                    LEFT_MARGIN,
+                    textColor::white_black, false);
+                printTextInColor(
+                    inputWord.substr(1, inputWord.length() - 2),
+                    37,
+                    LEFT_MARGIN,
+                    textColor::red_black);
+            }
             break;
         }
     }

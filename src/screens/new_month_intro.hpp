@@ -14,10 +14,15 @@ public:
     void setup() override;
     void loop() override;
     void setCurrentScreen() override;
+    std::string checkAutofill(std::string);
 
     int inputChar;
     std::string inputWord = "[]";
     std::string monthName = "";
     std::vector<Button> buttons;
     std::vector<Button>::iterator starCursor;
+    std::vector<std::string> autofillDictionary = {"styczen",
+                                                   "luty",
+                                                   "marzec",
+                                                   "kwiecien"};
 };

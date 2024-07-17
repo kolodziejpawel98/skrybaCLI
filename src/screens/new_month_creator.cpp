@@ -25,7 +25,7 @@ void NewMonthCreator::setup()
     // buttons.emplace_back(Button(purchases[0].category, 36, 4, EMPTY));
     // buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
     // buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
-    buttons.emplace_back(Button("Button1", 39, 4, 1), Button("Button2", 39, 8, 1));
+    // buttons.emplace_back(Button("Button1", 39, 4, 1), Button("Button2", 39, 8, 1));
     buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {

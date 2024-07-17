@@ -22,7 +22,8 @@ extern int currentScreen;
 enum textColor
 {
     red_black = 1,
-    white_black
+    white_black,
+    blue_black
 };
 
 namespace cursor
