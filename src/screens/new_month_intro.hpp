@@ -24,5 +24,13 @@ public:
     std::vector<std::string> autofillDictionary = {"styczen",
                                                    "luty",
                                                    "marzec",
-                                                   "kwiecien"};
+                                                   "kwiecien",
+                                                   "maj",
+                                                   "czerwiec",
+                                                   "lipiec",
+                                                   "sierpien",
+                                                   "wrzesien",
+                                                   "pazdziernik",
+                                                   "listopad",
+                                                   "grudzien"};
 };
