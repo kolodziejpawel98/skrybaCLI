@@ -11,20 +11,6 @@ InputLabel::InputLabel(std::string enteredContent,
                                           row(row),
                                           column(column){};
 
-void InputLabel::temporaryDraw(bool isCursorOnMe)
-{
-    if (!isCursorOnMe)
-    {
-        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
-        mvprintw(row, column, enteredContent.c_str());
-    }
-    else
-    {
-        attron(A_BOLD | COLOR_PAIR(textColor::red_black));
-        mvprintw(row, column, enteredContent.c_str());
-    }
-}
-
 uint16_t InputLabel::getCol()
 {
 }

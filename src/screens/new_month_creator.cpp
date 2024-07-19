@@ -32,7 +32,7 @@ void NewMonthCreator::setup()
     {
         starCursor = buttons.begin();
     }
-    drawButtons(buttons, starCursor);
+    drawButtons();
 }
 
 void NewMonthCreator::loop()
@@ -46,12 +46,12 @@ void NewMonthCreator::loop()
         switch (inputChar)
         {
         case KEY_UP:
-            goToUpperButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToUpperButton();
+            drawButtons();
             break;
         case KEY_DOWN:
-            goToLowerButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToLowerButton();
+            drawButtons();
             break;
         case '\n': // ENTER
             // inputWord.substr(1, inputWord.size() - 2)
@@ -68,7 +68,7 @@ void NewMonthCreator::loop()
                 refresh();
                 drawFrame();
                 drawBanner();
-                drawButtons(buttons, starCursor);
+                drawButtons();
                 printTextInColor("[" + newPurchaseCellText + "]", starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
             }
             break;
@@ -80,7 +80,7 @@ void NewMonthCreator::loop()
                 refresh();
                 drawFrame();
                 drawBanner();
-                drawButtons(buttons, starCursor);
+                drawButtons();
                 printTextInColor("Purchase: " + inputWord, 35, LEFT_MARGIN, textColor::white_black);
             }
             break;
@@ -91,7 +91,7 @@ void NewMonthCreator::loop()
             refresh();
             drawFrame();
             drawBanner();
-            drawButtons(buttons, starCursor);
+            drawButtons();
             printTextInColor(starCursor->getLabelText(), starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
             break;
         }

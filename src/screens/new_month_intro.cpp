@@ -6,13 +6,14 @@ void NewMonthIntro::setup()
     refresh();
     drawFrame();
     drawBanner();
+    buttons.clear();
     buttons.emplace_back(Button("Dalej", 38, 4, NEW_MONTH_CREATOR));
     buttons.emplace_back(Button("Cofnij", 39, 4, MAIN_MENU));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
     }
-    drawButtons(buttons, starCursor);
+    drawButtons();
     printTextInColor("Month name: ", 36, LEFT_MARGIN, textColor::white_black);
 }
 
@@ -38,12 +39,12 @@ void NewMonthIntro::loop()
         switch (inputChar)
         {
         case KEY_UP:
-            goToUpperButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToUpperButton();
+            drawButtons();
             break;
         case KEY_DOWN:
-            goToLowerButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToLowerButton();
+            drawButtons();
             break;
         case '\n': // ENTER
             monthName = inputWord.substr(1, inputWord.size() - 2);
@@ -58,7 +59,7 @@ void NewMonthIntro::loop()
                 refresh();
                 drawFrame();
                 drawBanner();
-                drawButtons(buttons, starCursor);
+                drawButtons();
                 printTextInColor("Month name: " + inputWord, 36, LEFT_MARGIN, textColor::white_black);
             }
             break;
@@ -72,7 +73,7 @@ void NewMonthIntro::loop()
             refresh();
             drawFrame();
             drawBanner();
-            drawButtons(buttons, starCursor);
+            drawButtons();
             printTextInColor(
                 inputWord,
                 37,
@@ -88,7 +89,7 @@ void NewMonthIntro::loop()
                 refresh();
                 drawFrame();
                 drawBanner();
-                drawButtons(buttons, starCursor);
+                drawButtons();
                 printTextInColor("Month name: ", 36, LEFT_MARGIN, textColor::white_black);
 
                 printTextInColor(

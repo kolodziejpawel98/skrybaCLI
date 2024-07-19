@@ -13,7 +13,7 @@ void History::setup()
     {
         starCursor = buttons.begin();
     }
-    drawButtons(buttons, starCursor);
+    drawButtons();
 }
 
 void History::loop()
@@ -25,12 +25,12 @@ void History::loop()
         switch (inputChar)
         {
         case KEY_UP:
-            goToUpperButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToUpperButton();
+            drawButtons();
             break;
         case KEY_DOWN:
-            goToLowerButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToLowerButton();
+            drawButtons();
             break;
         case '\n': // ENTER
             currentScreen = starCursor->getPointingToScreen();

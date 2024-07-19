@@ -14,7 +14,7 @@ void MainMenu::setup()
     {
         starCursor = buttons.begin();
     }
-    drawButtons(buttons, starCursor);
+    drawButtons();
 }
 
 void MainMenu::loop()
@@ -26,12 +26,12 @@ void MainMenu::loop()
         switch (inputChar)
         {
         case KEY_UP:
-            goToUpperButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToUpperButton();
+            drawButtons();
             break;
         case KEY_DOWN:
-            goToLowerButton(buttons, starCursor);
-            drawButtons(buttons, starCursor);
+            goToLowerButton();
+            drawButtons();
             break;
         case '\n': // ENTER
             currentScreen = starCursor->getPointingToScreen();

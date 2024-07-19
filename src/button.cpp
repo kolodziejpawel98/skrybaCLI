@@ -35,23 +35,6 @@ void Button::draw(bool isCursorOnMe)
     }
 }
 
-void Button::temporaryDraw(bool isCursorOnMe)
-{
-    std::string buttonAndText;
-    if (!isCursorOnMe)
-    {
-        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
-        buttonAndText = "[ ]  " + labelText;
-        mvprintw(row, column, buttonAndText.c_str());
-    }
-    else
-    {
-        attron(A_BOLD | COLOR_PAIR(textColor::red_black));
-        buttonAndText = "[*]  " + labelText;
-        mvprintw(row, column, buttonAndText.c_str());
-    }
-}
-
 std::string Button::getLabelText()
 {
     return labelText;
@@ -77,7 +60,7 @@ uint16_t Button::getRow()
     return row;
 }
 
-void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
+void goToLowerButton()
 {
     if (buttons.size() > 0)
     {
@@ -90,10 +73,10 @@ void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator
             starCursor = buttons.begin();
         }
     }
-    updateStarCursor(buttons, starCursor);
+    updateStarCursor();
 }
 
-void goToUpperButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
+void goToUpperButton()
 {
     if (buttons.size() > 0)
     {
@@ -106,10 +89,10 @@ void goToUpperButton(std::vector<Button> &buttons, std::vector<Button>::iterator
             starCursor = buttons.end() - 1;
         }
     }
-    updateStarCursor(buttons, starCursor);
+    updateStarCursor();
 }
 
-void drawButtons(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
+void drawButtons()
 {
     if (buttons.size() > 0)
     {
@@ -142,7 +125,7 @@ ButtonType Button::getButtonType()
     return buttonType;
 }
 
-void updateStarCursor(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor)
+void updateStarCursor()
 {
     if (starCursor->hasSubButtons())
     {

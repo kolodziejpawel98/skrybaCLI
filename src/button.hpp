@@ -18,7 +18,6 @@ public:
     Button(std::string, uint16_t, uint16_t, int, ButtonType = SIMPLE_BUTTON);
     Button(std::vector<Button>, ButtonType = SUB_BUTTONS_INSIDE);
     void draw(bool isCursorOnMe = false);
-    void temporaryDraw(bool isCursorOnMe = false) override;
     std::string getLabelText();
     std::string setLabelText(std::string newName);
     int getPointingToScreen();
@@ -36,7 +35,7 @@ private:
     ButtonType buttonType;
 };
 
-void goToLowerButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);
-void goToUpperButton(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);
-void drawButtons(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);
-void updateStarCursor(std::vector<Button> &buttons, std::vector<Button>::iterator &starCursor);
+void goToLowerButton();
+void goToUpperButton();
+void drawButtons();
+void updateStarCursor();

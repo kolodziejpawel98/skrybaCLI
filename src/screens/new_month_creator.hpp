@@ -20,8 +20,6 @@ public:
     int inputChar;
     std::string monthName = "";
     std::string inputWord = "[]";
-    std::vector<Button> buttons;
-    std::vector<Button>::iterator starCursor;
     std::vector<Purchase> purchases;
     std::vector<InterfaceElement> interfaceElements;
     std::vector<InterfaceElement>::iterator starCursorOnInterfaceElement;

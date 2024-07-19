@@ -45,3 +45,19 @@ std::vector<std::string> categories = {
     "transport (jakdojade)",
     "jedzenie na miescie",
     "jedzenie zamawiane"};
+
+std::vector<Button> buttons = {};
+std::vector<Button>::iterator starCursor = buttons.begin();
+
+std::vector<std::string> autofillDictionary = {"styczen",
+                                               "luty",
+                                               "marzec",
+                                               "kwiecien",
+                                               "maj",
+                                               "czerwiec",
+                                               "lipiec",
+                                               "sierpien",
+                                               "wrzesien",
+                                               "pazdziernik",
+                                               "listopad",
+                                               "grudzien"};
