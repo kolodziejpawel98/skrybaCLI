@@ -26,11 +26,14 @@ void NewMonthCreator::setup()
     // buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
     // buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
 
-    buttons.emplace_back(Button({Button("Button1", 38, 4, 1), Button("Button2", 38, 32, 1)}));
+    buttons.emplace_back(Button({Button("Button1", 38, 4, 1),
+                                 Button("Button2", 38, 32, 1),
+                                 Button("Button3", 38, 52, 1)}));
     buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Cofnij-2", 40, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
-        starCursor = buttons.begin();
+        starCursor = buttons.begin() + 2;
     }
     drawButtons();
 }
@@ -59,41 +62,41 @@ void NewMonthCreator::loop()
             {
                 currentScreen = starCursor->getPointingToScreen();
             }
-            else
-            {
-                std::string newPurchaseCellText = inputWord.substr(1, inputWord.size() - 2);
-                starCursor->setLabelText(newPurchaseCellText);
-                inputWord = "[]";
-                clear();
-                refresh();
-                drawFrame();
-                drawBanner();
-                drawButtons();
-                printTextInColor("[" + newPurchaseCellText + "]", starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
-            }
+            //     else
+            //     {
+            //         std::string newPurchaseCellText = inputWord.substr(1, inputWord.size() - 2);
+            //         starCursor->setLabelText(newPurchaseCellText);
+            //         inputWord = "[]";
+            //         clear();
+            //         refresh();
+            //         drawFrame();
+            //         drawBanner();
+            //         drawButtons();
+            //         printTextInColor("[" + newPurchaseCellText + "]", starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
+            //     }
             break;
-        case KEY_BACKSPACE:
-            if (inputWord.length() > 2)
-            {
-                inputWord.erase(inputWord.length() - 2, 1);
-                clear();
-                refresh();
-                drawFrame();
-                drawBanner();
-                drawButtons();
-                printTextInColor("Purchase: " + inputWord, 35, LEFT_MARGIN, textColor::white_black);
-            }
-            break;
-        default:
-            inputWord.insert(inputWord.size() - 1, 1, inputChar);
-            starCursor->setLabelText(inputWord);
-            clear();
-            refresh();
-            drawFrame();
-            drawBanner();
-            drawButtons();
-            printTextInColor(starCursor->getLabelText(), starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
-            break;
+            // case KEY_BACKSPACE:
+            //     if (inputWord.length() > 2)
+            //     {
+            //         inputWord.erase(inputWord.length() - 2, 1);
+            //         clear();
+            //         refresh();
+            //         drawFrame();
+            //         drawBanner();
+            //         drawButtons();
+            //         printTextInColor("Purchase: " + inputWord, 35, LEFT_MARGIN, textColor::white_black);
+            //     }
+            //     break;
+            // default:
+            //     inputWord.insert(inputWord.size() - 1, 1, inputChar);
+            //     starCursor->setLabelText(inputWord);
+            //     clear();
+            //     refresh();
+            //     drawFrame();
+            //     drawBanner();
+            //     drawButtons();
+            //     printTextInColor(starCursor->getLabelText(), starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
+            //     break;
         }
     }
 }

@@ -9,7 +9,7 @@ void MainMenu::setup()
     buttons.clear();
     buttons.emplace_back(Button("Create new report", 38, 4, NEW_MONTH_INTRO));
     buttons.emplace_back(Button("Previous reports", 39, 4, HISTORY));
-    buttons.emplace_back(Button("Cofnij", 40, 4, EXIT));
+    buttons.emplace_back(Button("Quit", 40, 4, EXIT));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();

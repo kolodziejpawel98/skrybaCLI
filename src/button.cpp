@@ -64,13 +64,32 @@ void goToLowerButton()
 {
     if (buttons.size() > 0)
     {
-        if (starCursor != buttons.end() - 1)
+
+        if (starCursor->hasSubButtons())
         {
-            ++starCursor;
+            if (starCursor != starCursor->getSubButtons().end() - 1)
+            {
+                debugPrint("ekolpaw 1", 10, 10);
+                --starCursor;
+            }
+            else
+            {
+                debugPrint("ekolpaw 2", 10, 10);
+                starCursor = starCursor->getSubButtons().begin();
+            }
         }
         else
         {
-            starCursor = buttons.begin();
+            if (starCursor != buttons.end() - 1)
+            {
+                debugPrint("ekolpaw 3", 10, 10);
+                ++starCursor;
+            }
+            else
+            {
+                debugPrint("ekolpaw 4", 10, 10);
+                starCursor = buttons.begin();
+            }
         }
     }
     updateStarCursor();
@@ -80,16 +99,45 @@ void goToUpperButton()
 {
     if (buttons.size() > 0)
     {
-        if (starCursor != buttons.begin())
+        if (starCursor->hasSubButtons())
         {
-            --starCursor;
+            if (starCursor != starCursor->getSubButtons().begin())
+            {
+                debugPrint("ekolpaw 5", 10, 10);
+                --starCursor;
+            }
+            else
+            {
+                debugPrint("ekolpaw 6", 10, 10);
+                starCursor = starCursor->getSubButtons().end() - 1;
+            }
         }
         else
         {
-            starCursor = buttons.end() - 1;
+            if (starCursor != buttons.begin())
+            {
+                debugPrint("ekolpaw 7", 10, 10);
+                --starCursor;
+            }
+            else
+            {
+                debugPrint("ekolpaw 8", 10, 10);
+                starCursor = buttons.end() - 1;
+            }
         }
     }
     updateStarCursor();
+}
+
+void nextButton()
+{
+    if (starCursor->hasSubButtons())
+    {
+    }
+}
+
+void previousButton()
+{
 }
 
 void drawButtons()
