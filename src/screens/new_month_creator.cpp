@@ -28,13 +28,16 @@ void NewMonthCreator::setup()
 
     buttons.emplace_back(Button({Button("Button1", 38, 4, 1),
                                  Button("Button2", 38, 32, 1),
-                                 Button("Button3", 38, 52, 1)}));
+                                 Button("Button3", 38, 52, 1)},
+                                SUB_BUTTONS_INSIDE));
     buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
     buttons.emplace_back(Button("Cofnij-2", 40, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
         starCursor = buttons.begin() + 2;
     }
+    starCursorStoredPlace = starCursor;
+
     drawButtons();
 }
 

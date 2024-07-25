@@ -13,6 +13,8 @@ void History::setup()
     {
         starCursor = buttons.begin();
     }
+    starCursorStoredPlace = starCursor;
+
     drawButtons();
 }
 

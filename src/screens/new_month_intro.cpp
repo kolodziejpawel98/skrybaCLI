@@ -13,6 +13,8 @@ void NewMonthIntro::setup()
     {
         starCursor = buttons.begin();
     }
+    starCursorStoredPlace = starCursor;
+
     drawButtons();
     printTextInColor("Month name: ", 36, LEFT_MARGIN, textColor::white_black);
 }

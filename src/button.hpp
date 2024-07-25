@@ -9,7 +9,8 @@
 enum ButtonType
 {
     SIMPLE_BUTTON,
-    SUB_BUTTONS_INSIDE
+    SUB_BUTTONS_INSIDE,
+    SUBBUTTON
 };
 
 class Button : public InterfaceElement

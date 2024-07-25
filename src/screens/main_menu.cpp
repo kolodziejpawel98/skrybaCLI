@@ -14,6 +14,8 @@ void MainMenu::setup()
     {
         starCursor = buttons.begin();
     }
+    starCursorStoredPlace = starCursor;
+
     drawButtons();
 }
 
