@@ -90,6 +90,7 @@ void goToUpperButton()
         }
         else
         {
+            debugPrint("ekolpaw 3", 20, 20);
             starCursor = starCursorStoredPlace;
             starCursor = buttons.end() - 1;
         }
