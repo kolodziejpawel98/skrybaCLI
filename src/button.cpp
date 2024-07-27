@@ -16,23 +16,67 @@ Button::Button(std::string labelText,
                                         buttonType(buttonType) {}
 
 Button::Button(std::vector<Button> subButtons, ButtonType buttonType) : subButtons(subButtons),
-                                                                        buttonType(buttonType){};
+                                                                        buttonType(buttonType)
+{
+    starCursorOnSubbutton = subButtons.begin();
+};
+
+void drawButtons()
+{
+    if (buttons.size() > 0)
+    {
+        for (auto &button : buttons)
+        {
+            // if (button.getButtonType() == SIMPLE_BUTTON)
+            // {
+            button.draw();
+            // }
+            // else
+            // {
+            //     for (auto &subbutton : button.getSubButtons())
+            //     {
+            //         subbutton.draw();
+            //     }
+            // }
+        }
+        starCursor->draw(true);
+    }
+}
+
+void updateStarCursor()
+{
+    // if (starCursor->hasSubButtons())
+    // {
+    //     starCursor = starCursor->getSubButtons().begin();
+    // }
+}
 
 void Button::draw(bool isCursorOnMe)
 {
     std::string buttonAndText;
-    if (!isCursorOnMe)
+
+    if (buttonType == SIMPLE_BUTTON)
     {
-        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
-        buttonAndText = "[ ]  " + labelText;
+        buttonAndText = labelText;
+    }
+    else if (buttonType == SUB_BUTTONS_INSIDE)
+    {
+        buttonAndText = subButtons.at(0).getLabelText();
+    }
+
+    if (isCursorOnMe)
+    {
+        attron(A_BOLD | COLOR_PAIR(textColor::red_black));
+        buttonAndText = "[*]  " + buttonAndText;
         mvprintw(row, column, buttonAndText.c_str());
     }
     else
     {
-        attron(A_BOLD | COLOR_PAIR(textColor::red_black));
-        buttonAndText = "[*]  " + labelText;
+        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
+        buttonAndText = "[ ]  " + buttonAndText;
         mvprintw(row, column, buttonAndText.c_str());
     }
+    attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
 }
 
 std::string Button::getLabelText()
@@ -90,47 +134,12 @@ void goToUpperButton()
         }
         else
         {
-            debugPrint("ekolpaw 3", 20, 20);
             starCursor = starCursorStoredPlace;
             starCursor = buttons.end() - 1;
         }
     }
     starCursorStoredPlace = starCursor;
     updateStarCursor();
-}
-
-void nextButton()
-{
-    if (starCursor->hasSubButtons())
-    {
-    }
-}
-
-void previousButton()
-{
-}
-
-void drawButtons()
-{
-    if (buttons.size() > 0)
-    {
-        for (auto &button : buttons)
-        {
-            if (button.getButtonType() == SIMPLE_BUTTON)
-            {
-                button.draw();
-            }
-            else
-            {
-                for (auto &subbutton : button.getSubButtons())
-                {
-                    subbutton.draw();
-                }
-            }
-        }
-        starCursor->draw(true);
-        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
-    }
 }
 
 std::vector<Button> &Button::getSubButtons()
@@ -141,12 +150,4 @@ std::vector<Button> &Button::getSubButtons()
 ButtonType Button::getButtonType()
 {
     return buttonType;
-}
-
-void updateStarCursor()
-{
-    if (starCursor->hasSubButtons())
-    {
-        starCursor = starCursor->getSubButtons().begin();
-    }
 }

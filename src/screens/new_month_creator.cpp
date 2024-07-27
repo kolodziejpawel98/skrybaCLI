@@ -38,7 +38,6 @@ void NewMonthCreator::setup()
         starCursor = buttons.begin();
     }
     starCursorStoredPlace = starCursor;
-
     drawButtons();
 }
 
@@ -57,6 +56,14 @@ void NewMonthCreator::loop()
             drawButtons();
             break;
         case KEY_DOWN:
+            goToLowerButton();
+            drawButtons();
+            break;
+        case KEY_LEFT:
+            goToUpperButton();
+            drawButtons();
+            break;
+        case KEY_RIGHT:
             goToLowerButton();
             drawButtons();
             break;

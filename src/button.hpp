@@ -33,6 +33,7 @@ private:
     uint16_t row, column;
     int pointingToScreen;
     std::vector<Button> subButtons;
+    std::vector<Button>::iterator starCursorOnSubbutton;
     ButtonType buttonType;
 };
 
