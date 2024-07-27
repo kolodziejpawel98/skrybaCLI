@@ -26,9 +26,10 @@ public:
     ButtonType getButtonType();
     uint16_t getCol() override;
     uint16_t getRow() override;
+    std::vector<Button>::iterator &getStarCursorOnSubbutton();
     bool hasSubButtons() const { return !subButtons.empty(); }
 
-private:
+    // private:
     std::string labelText;
     uint16_t row, column; // change to std::optional in case creating button with subbutons, row and column is empty
     int pointingToScreen;
@@ -39,5 +40,7 @@ private:
 
 void goToLowerButton();
 void goToUpperButton();
+void goToLeftButton(std::vector<Button>::iterator parentButton);
+void goToRightButton(std::vector<Button>::iterator parentBtton);
 void drawButtons();
 void updateStarCursor();

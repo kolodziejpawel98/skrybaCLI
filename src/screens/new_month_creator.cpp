@@ -25,7 +25,7 @@ void NewMonthCreator::setup()
     // buttons.emplace_back(Button(purchases[0].category, 36, 4, EMPTY));
     // buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
     // buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
-    // buttons.emplace_back(Button("xd", 37, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("xd", 37, 4, NEW_MONTH_INTRO));
 
     buttons.emplace_back(Button({Button("Button1", 38, 4, 1),
                                  Button("Button2", 38, 32, 1),
@@ -36,7 +36,7 @@ void NewMonthCreator::setup()
     {
         starCursor = buttons.begin();
     }
-    starCursorStoredPlace = starCursor;
+    // starCursorStoredPlace = starCursor;
     drawButtons();
 }
 
@@ -59,11 +59,11 @@ void NewMonthCreator::loop()
             drawButtons();
             break;
         case KEY_LEFT:
-            goToUpperButton();
+            goToLeftButton(starCursor);
             drawButtons();
             break;
         case KEY_RIGHT:
-            goToLowerButton();
+            goToRightButton(starCursor);
             drawButtons();
             break;
         case '\n': // ENTER
