@@ -27,17 +27,7 @@ void drawButtons()
     {
         for (auto &button : buttons)
         {
-            // if (button.getButtonType() == SIMPLE_BUTTON)
-            // {
             button.draw();
-            // }
-            // else
-            // {
-            //     for (auto &subbutton : button.getSubButtons())
-            //     {
-            //         subbutton.draw();
-            //     }
-            // }
         }
         starCursor->draw(true);
     }
@@ -58,25 +48,45 @@ void Button::draw(bool isCursorOnMe)
     if (buttonType == SIMPLE_BUTTON)
     {
         buttonAndText = labelText;
+        if (isCursorOnMe)
+        {
+            attron(A_BOLD | COLOR_PAIR(textColor::red_black));
+            buttonAndText = "[*]  " + buttonAndText;
+            mvprintw(row, column, buttonAndText.c_str());
+        }
+        else
+        {
+            attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
+            buttonAndText = "[ ]  " + buttonAndText;
+            mvprintw(row, column, buttonAndText.c_str());
+        }
+        attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
     }
     else if (buttonType == SUB_BUTTONS_INSIDE)
     {
-        buttonAndText = subButtons.at(0).getLabelText();
-    }
+        for (auto &subButton : subButtons)
+        {
+            buttonAndText = subButton.getLabelText();
+            row = subButton.getRow();
+            column = subButton.getCol();
 
-    if (isCursorOnMe)
-    {
-        attron(A_BOLD | COLOR_PAIR(textColor::red_black));
-        buttonAndText = "[*]  " + buttonAndText;
-        mvprintw(row, column, buttonAndText.c_str());
-    }
-    else
-    {
+            attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
+            buttonAndText = "[ ]  " + buttonAndText;
+            mvprintw(row, column, buttonAndText.c_str());
+        }
+
+        if (isCursorOnMe)
+        {
+            buttonAndText = subButtons.at(0).getLabelText();
+            row = subButtons.at(0).row;
+            column = subButtons.at(0).column;
+
+            attron(A_BOLD | COLOR_PAIR(textColor::red_black));
+            buttonAndText = "[*]  " + buttonAndText;
+            mvprintw(row, column, buttonAndText.c_str());
+        }
         attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
-        buttonAndText = "[ ]  " + buttonAndText;
-        mvprintw(row, column, buttonAndText.c_str());
     }
-    attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
 }
 
 std::string Button::getLabelText()

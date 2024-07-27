@@ -30,7 +30,7 @@ public:
 
 private:
     std::string labelText;
-    uint16_t row, column;
+    uint16_t row, column; // change to std::optional in case creating button with subbutons, row and column is empty
     int pointingToScreen;
     std::vector<Button> subButtons;
     std::vector<Button>::iterator starCursorOnSubbutton;
