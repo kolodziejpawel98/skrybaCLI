@@ -6,37 +6,15 @@ void NewMonthCreator::setup()
     refresh();
     drawFrame();
     drawBanner();
-
-    // interfaceElements.clear();
-    // interfaceElements.push_back(Button("Cofnij", 20, LEFT_MARGIN, NEW_MONTH_INTRO));
-    // interfaceElements.push_back(InputLabel("[]", 21, LEFT_MARGIN));
-    // interfaceElements.push_back(InputLabel("[]", 22, LEFT_MARGIN));
-    // if (!interfaceElements.empty())
-    // {
-    //     starCursorOnInterfaceElement = interfaceElements.begin();
-    // }
-    // for (auto &interfaceElement : interfaceElements)
-    // {
-    //     interfaceElement.temporaryDraw();
-    // }
-
-    // purchases.push_back(Purchase("[]", 0, "[]"));
     buttons.clear();
-    // buttons.emplace_back(Button(purchases[0].category, 36, 4, EMPTY));
-    // buttons.emplace_back(Button("[" + std::to_string(purchases[0].cost) + "]", 37, 4, EMPTY));
-    // buttons.emplace_back(Button(purchases[0].shopName, 38, 4, EMPTY));
-    buttons.emplace_back(Button("xd", 37, 4, NEW_MONTH_INTRO));
-
-    buttons.emplace_back(Button({Button("Button1", 38, 4, 1),
-                                 Button("Button2", 38, 32, 1),
-                                 Button("Button3", 38, 52, 1)}));
+    buttons.emplace_back(Button({Button("1", 38, 4, 1),
+                                 Button("2", 38, 23, 1),
+                                 Button("3", 38, 44, 1)}));
     buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Cofnij-2", 40, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
     }
-    // starCursorStoredPlace = starCursor;
     drawButtons();
 }
 
@@ -46,7 +24,6 @@ void NewMonthCreator::loop()
     while (currentScreen == NEW_MONTH_CREATOR)
     {
         printTextInColor("Month: " + monthName, 8, LEFT_MARGIN, textColor::white_black);
-        // refresh();
         inputChar = getch();
         switch (inputChar)
         {

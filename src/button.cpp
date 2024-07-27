@@ -119,6 +119,7 @@ uint16_t Button::getRow()
 
 void goToLowerButton()
 {
+    starCursor->starCursorOnSubbutton = starCursor->subButtons.begin();
     if (buttons.size() > 0)
     {
         if (starCursor != buttons.end() - 1)
@@ -138,6 +139,7 @@ void goToLowerButton()
 
 void goToUpperButton()
 {
+    starCursor->starCursorOnSubbutton = starCursor->subButtons.begin();
     if (buttons.size() > 0)
     {
         if (starCursor != buttons.begin())
@@ -155,47 +157,42 @@ void goToUpperButton()
     // updateStarCursor();
 }
 
-void goToLeftButton(std::vector<Button>::iterator parentButton)
+void goToLeftButton(std::vector<Button>::iterator &parentButton)
 {
     if (parentButton->getButtonType() == SUB_BUTTONS_INSIDE)
     {
         if (parentButton->getSubButtons().size() > 0)
         {
-
-            if (parentButton->starCursorOnSubbutton != parentButton->subButtons.begin())
+            if (parentButton->starCursorOnSubbutton->getLabelText() == parentButton->subButtons.begin()->getLabelText())
             {
-                debugPrint("LEFT if XDDD", 30, 30);
-
-                --parentButton->starCursorOnSubbutton;
+                parentButton->starCursorOnSubbutton = parentButton->subButtons.end() - 1;
+                debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
             }
             else
             {
-                debugPrint("LEFT else XDDD", 30, 30);
-
-                parentButton->starCursorOnSubbutton = parentButton->subButtons.end() - 1;
+                --parentButton->starCursorOnSubbutton;
+                // debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
             }
         }
     }
 }
 
-void goToRightButton(std::vector<Button>::iterator parentButton)
+void goToRightButton(std::vector<Button>::iterator &parentButton)
 {
     if (parentButton->getButtonType() == SUB_BUTTONS_INSIDE)
     {
         if (parentButton->getSubButtons().size() > 0)
         {
-
-            if (parentButton->starCursorOnSubbutton != parentButton->subButtons.end() - 1)
+            auto help = parentButton->subButtons.end() - 1;
+            if (parentButton->starCursorOnSubbutton->getLabelText() == help->getLabelText())
             {
-                debugPrint("RIGHT if XDDD", 30, 30);
-
-                ++parentButton->starCursorOnSubbutton;
+                parentButton->starCursorOnSubbutton = parentButton->subButtons.begin();
+                debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
             }
             else
             {
-                debugPrint("RIGHT else XDDD", 30, 30);
-
-                parentButton->starCursorOnSubbutton = parentButton->subButtons.begin();
+                ++parentButton->starCursorOnSubbutton;
+                // debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
             }
         }
     }
