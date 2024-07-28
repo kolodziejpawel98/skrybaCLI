@@ -69,7 +69,6 @@ void NewMonthIntro::loop()
                 textColor::red_black);
             break;
         default:
-            // inputWord.insert(inputWord.size() - 1, 1, inputChar);
             inputWord += inputChar;
 
             if (inputWord.length() > 0)

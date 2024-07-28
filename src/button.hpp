@@ -14,6 +14,7 @@ public:
     void draw(bool isCursorOnMe = false);
     std::string getLabelText() { return labelText; }
     std::string setLabelText(std::string newName) { labelText = newName; }
+    void addCharToLabelText(char letter) { labelText += letter; }
     int getPointingToScreen() { return nextScreen; }
     std::vector<Button> &getSubButtons() { return subButtons; }
     uint16_t getCol() override { return column; }
