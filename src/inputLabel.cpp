@@ -9,12 +9,12 @@ InputLabel::InputLabel(std::string enteredContent,
                        uint16_t row,
                        uint16_t column) : enteredContent(enteredContent),
                                           row(row),
-                                          column(column){};
+                                          column(column) {};
 
-uint16_t InputLabel::getCol()
+uint16_t &InputLabel::getCol()
 {
 }
 
-uint16_t InputLabel::getRow()
+uint16_t &InputLabel::getRow()
 {
 }

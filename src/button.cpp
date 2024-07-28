@@ -15,7 +15,7 @@ Button::Button(std::string labelText,
 
 Button::Button(std::vector<Button> subButtons) : subButtons(subButtons)
 {
-    starCursorOnSubbutton = subButtons.begin();
+    this->starCursorOnSubbutton = this->subButtons.begin();
 };
 
 void drawButtons()
@@ -36,43 +36,39 @@ void Button::draw(bool isCursorOnMe)
 
     if (!hasSubButtons())
     {
-        buttonAndText = labelText;
+        buttonAndText = this->labelText;
         if (isCursorOnMe)
         {
             attron(A_BOLD | COLOR_PAIR(textColor::red_black));
             buttonAndText = "[*]  " + buttonAndText;
-            mvprintw(row, column, buttonAndText.c_str());
+            mvprintw(this->row, this->column, buttonAndText.c_str());
         }
         else
         {
             attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
             buttonAndText = "[ ]  " + buttonAndText;
-            mvprintw(row, column, buttonAndText.c_str());
+            mvprintw(this->row, this->column, buttonAndText.c_str());
         }
         attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
     }
     else if (hasSubButtons())
     {
-        for (auto &subButton : subButtons)
+        for (auto &subButton : this->subButtons)
         {
             buttonAndText = subButton.getLabelText();
-            row = subButton.getRow();
-            column = subButton.getCol();
 
             attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
             buttonAndText = "[ ]  " + buttonAndText;
-            mvprintw(row, column, buttonAndText.c_str());
+            mvprintw(subButton.getRow(), subButton.getCol(), buttonAndText.c_str());
         }
 
         if (isCursorOnMe)
         {
             buttonAndText = starCursorOnSubbutton->getLabelText();
-            row = starCursorOnSubbutton->row;
-            column = starCursorOnSubbutton->column;
 
             attron(A_BOLD | COLOR_PAIR(textColor::red_black));
             buttonAndText = "[*]  " + buttonAndText;
-            mvprintw(row, column, buttonAndText.c_str());
+            mvprintw(this->starCursorOnSubbutton->row, this->starCursorOnSubbutton->column, buttonAndText.c_str());
         }
         attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
     }
