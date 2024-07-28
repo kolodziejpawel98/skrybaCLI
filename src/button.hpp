@@ -6,36 +6,27 @@
 
 #pragma once
 
-enum ButtonType
-{
-    SIMPLE_BUTTON,
-    SUB_BUTTONS_INSIDE,
-    SUBBUTTON
-};
-
 class Button : public InterfaceElement
 {
 public:
-    Button(std::string, uint16_t, uint16_t, int, ButtonType = SIMPLE_BUTTON);
-    Button(std::vector<Button>, ButtonType = SUB_BUTTONS_INSIDE);
+    Button(std::string, uint16_t, uint16_t, int);
+    Button(std::vector<Button>);
     void draw(bool isCursorOnMe = false);
-    std::string getLabelText();
-    std::string setLabelText(std::string newName);
-    int getPointingToScreen();
-    std::vector<Button> &getSubButtons();
-    ButtonType getButtonType();
-    uint16_t getCol() override;
-    uint16_t getRow() override;
-    std::vector<Button>::iterator &getStarCursorOnSubbutton();
+    std::string getLabelText() { return labelText; }
+    std::string setLabelText(std::string newName) { labelText = newName; }
+    int getPointingToScreen() { return nextScreen; }
+    std::vector<Button> &getSubButtons() { return subButtons; }
+    uint16_t getCol() override { return column; }
+    uint16_t getRow() override { return row; }
+    std::vector<Button>::iterator &getStarCursorOnSubbutton() { return starCursorOnSubbutton; }
     bool hasSubButtons() const { return !subButtons.empty(); }
 
-    // private:
+private:
     std::string labelText;
     uint16_t row, column; // change to std::optional in case creating button with subbutons, row and column is empty
-    int pointingToScreen;
+    int nextScreen;
     std::vector<Button> subButtons;
     std::vector<Button>::iterator starCursorOnSubbutton;
-    ButtonType buttonType;
 };
 
 void goToLowerButton();
@@ -43,4 +34,3 @@ void goToUpperButton();
 void goToLeftButton();
 void goToRightButton();
 void drawButtons();
-void updateStarCursor();

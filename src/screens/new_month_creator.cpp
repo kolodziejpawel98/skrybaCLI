@@ -7,9 +7,9 @@ void NewMonthCreator::setup()
     drawFrame();
     drawBanner();
     buttons.clear();
-    buttons.emplace_back(Button({Button("xd", 38, 4, 1),
-                                 Button("xd", 38, 23, 1),
-                                 Button("xd", 38, 44, 1)}));
+    buttons.emplace_back(Button({Button("", 38, 4, 1),
+                                 Button("", 38, 23, 1),
+                                 Button("", 38, 44, 1)}));
     buttons.emplace_back(Button("Back", 39, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {

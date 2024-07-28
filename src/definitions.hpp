@@ -35,11 +35,12 @@ namespace cursor
 void setup();
 void exitText();
 void initColors();
+void refreshScreen();
+void refreshScreenWithoutButtons();
 
 const uint8_t LEFT_MARGIN = 4;
 extern std::vector<std::string> categories;
 
 extern std::vector<Button> buttons;
 extern std::vector<Button>::iterator starCursor;
-extern std::vector<Button>::iterator starCursorStoredPlace;
 extern std::vector<std::string> autofillDictionary;

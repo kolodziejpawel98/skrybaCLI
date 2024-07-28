@@ -17,6 +17,6 @@ public:
     std::string checkAutofill(std::string);
 
     int inputChar;
-    std::string inputWord = "[]";
+    std::string inputWord = "";
     std::string monthName = "";
 };

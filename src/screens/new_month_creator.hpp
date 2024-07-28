@@ -19,7 +19,7 @@ public:
 
     int inputChar;
     std::string monthName = "";
-    std::string inputWord = "[]";
+    std::string inputWord = "";
     std::vector<Purchase> purchases;
     std::vector<InterfaceElement> interfaceElements;
     std::vector<InterfaceElement>::iterator starCursorOnInterfaceElement;

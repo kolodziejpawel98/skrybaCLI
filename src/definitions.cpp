@@ -37,6 +37,23 @@ void exitText()
     endwin();
 }
 
+void refreshScreenWithoutButtons()
+{
+    clear();
+    refresh();
+    drawFrame();
+    drawBanner();
+}
+
+void refreshScreen()
+{
+    clear();
+    refresh();
+    drawFrame();
+    drawBanner();
+    drawButtons();
+}
+
 std::vector<std::string> categories = {
     "spozywka",
     "rzeczy",
@@ -48,7 +65,6 @@ std::vector<std::string> categories = {
 
 std::vector<Button> buttons = {};
 std::vector<Button>::iterator starCursor = buttons.begin();
-std::vector<Button>::iterator starCursorStoredPlace = buttons.begin();
 
 std::vector<std::string> autofillDictionary = {"styczen",
                                                "luty",

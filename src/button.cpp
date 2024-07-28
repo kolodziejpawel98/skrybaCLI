@@ -8,15 +8,12 @@
 Button::Button(std::string labelText,
                uint16_t row,
                uint16_t column,
-               int pointingToScreen,
-               ButtonType buttonType) : labelText(labelText),
-                                        row(row),
-                                        column(column),
-                                        pointingToScreen(pointingToScreen),
-                                        buttonType(buttonType) {}
+               int nextScreen) : labelText(labelText),
+                                 row(row),
+                                 column(column),
+                                 nextScreen(nextScreen) {}
 
-Button::Button(std::vector<Button> subButtons, ButtonType buttonType) : subButtons(subButtons),
-                                                                        buttonType(buttonType)
+Button::Button(std::vector<Button> subButtons) : subButtons(subButtons)
 {
     starCursorOnSubbutton = subButtons.begin();
 };
@@ -37,10 +34,8 @@ void Button::draw(bool isCursorOnMe)
 {
     std::string buttonAndText;
 
-    if (buttonType == SIMPLE_BUTTON)
+    if (!hasSubButtons())
     {
-        debugPrint("SIMPLE BUTTON", 10, 50);
-
         buttonAndText = labelText;
         if (isCursorOnMe)
         {
@@ -56,9 +51,8 @@ void Button::draw(bool isCursorOnMe)
         }
         attroff(A_BOLD | COLOR_PAIR(textColor::red_black));
     }
-    else if (buttonType == SUB_BUTTONS_INSIDE)
+    else if (hasSubButtons())
     {
-        debugPrint("SUBBUTONZ", 10, 50);
         for (auto &subButton : subButtons)
         {
             buttonAndText = subButton.getLabelText();
@@ -84,34 +78,9 @@ void Button::draw(bool isCursorOnMe)
     }
 }
 
-std::string Button::getLabelText()
-{
-    return labelText;
-}
-
-std::string Button::setLabelText(std::string newName)
-{
-    labelText = newName;
-}
-
-int Button::getPointingToScreen()
-{
-    return pointingToScreen;
-}
-
-uint16_t Button::getCol()
-{
-    return column;
-}
-
-uint16_t Button::getRow()
-{
-    return row;
-}
-
 void goToLowerButton()
 {
-    starCursor->starCursorOnSubbutton = starCursor->subButtons.begin();
+    starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
     if (buttons.size() > 0)
     {
         if (starCursor != buttons.end() - 1)
@@ -127,7 +96,7 @@ void goToLowerButton()
 
 void goToUpperButton()
 {
-    starCursor->starCursorOnSubbutton = starCursor->subButtons.begin();
+    starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
     if (buttons.size() > 0)
     {
         if (starCursor != buttons.begin())
@@ -143,17 +112,17 @@ void goToUpperButton()
 
 void goToLeftButton()
 {
-    if (starCursor->getButtonType() == SUB_BUTTONS_INSIDE)
+    if (starCursor->hasSubButtons())
     {
-        if (starCursor->subButtons.size() > 0)
+        if (starCursor->getSubButtons().size() > 0)
         {
-            if (starCursor->starCursorOnSubbutton == starCursor->subButtons.begin())
+            if (starCursor->getStarCursorOnSubbutton() == starCursor->getSubButtons().begin())
             {
-                starCursor->starCursorOnSubbutton = starCursor->subButtons.end() - 1;
+                starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().end() - 1;
             }
             else
             {
-                --(starCursor->starCursorOnSubbutton);
+                --(starCursor->getStarCursorOnSubbutton());
             }
         }
     }
@@ -161,33 +130,18 @@ void goToLeftButton()
 
 void goToRightButton()
 {
-    if (starCursor->getButtonType() == SUB_BUTTONS_INSIDE)
+    if (starCursor->hasSubButtons())
     {
-        if (starCursor->subButtons.size() > 0)
+        if (starCursor->getSubButtons().size() > 0)
         {
-            if (starCursor->starCursorOnSubbutton == starCursor->subButtons.end() - 1)
+            if (starCursor->getStarCursorOnSubbutton() == starCursor->getSubButtons().end() - 1)
             {
-                starCursor->starCursorOnSubbutton = starCursor->subButtons.begin();
+                starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
             }
             else
             {
-                ++(starCursor->starCursorOnSubbutton);
+                ++(starCursor->getStarCursorOnSubbutton());
             }
         }
     }
-}
-
-std::vector<Button> &Button::getSubButtons()
-{
-    return subButtons;
-}
-
-std::vector<Button>::iterator &Button::getStarCursorOnSubbutton()
-{
-    return starCursorOnSubbutton;
-}
-
-ButtonType Button::getButtonType()
-{
-    return buttonType;
 }
