@@ -7,10 +7,10 @@ void NewMonthCreator::setup()
     drawFrame();
     drawBanner();
     buttons.clear();
-    buttons.emplace_back(Button({Button("1", 38, 4, 1),
-                                 Button("2", 38, 23, 1),
-                                 Button("3", 38, 44, 1)}));
-    buttons.emplace_back(Button("Cofnij", 39, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button({Button("xd", 38, 4, 1),
+                                 Button("xd", 38, 23, 1),
+                                 Button("xd", 38, 44, 1)}));
+    buttons.emplace_back(Button("Back", 39, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
@@ -36,16 +36,16 @@ void NewMonthCreator::loop()
             drawButtons();
             break;
         case KEY_LEFT:
-            goToLeftButton(starCursor);
+            goToLeftButton();
             drawButtons();
             break;
         case KEY_RIGHT:
-            goToRightButton(starCursor);
+            goToRightButton();
             drawButtons();
             break;
         case '\n': // ENTER
             // inputWord.substr(1, inputWord.size() - 2)
-            if (starCursor->getLabelText() == "Cofnij")
+            if (starCursor->getLabelText() == "Back")
             {
                 currentScreen = starCursor->getPointingToScreen();
             }

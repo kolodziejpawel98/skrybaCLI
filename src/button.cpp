@@ -33,14 +33,6 @@ void drawButtons()
     }
 }
 
-void updateStarCursor()
-{
-    // if (starCursor->hasSubButtons())
-    // {
-    //     starCursor = starCursor->getSubButtons().begin();
-    // }
-}
-
 void Button::draw(bool isCursorOnMe)
 {
     std::string buttonAndText;
@@ -124,17 +116,13 @@ void goToLowerButton()
     {
         if (starCursor != buttons.end() - 1)
         {
-            // starCursor = starCursorStoredPlace;
             ++starCursor;
         }
         else
         {
-            // starCursor = starCursorStoredPlace;
             starCursor = buttons.begin();
         }
     }
-    // starCursorStoredPlace = starCursor;
-    // updateStarCursor();
 }
 
 void goToUpperButton()
@@ -144,55 +132,46 @@ void goToUpperButton()
     {
         if (starCursor != buttons.begin())
         {
-            // starCursor = starCursorStoredPlace;
             --starCursor;
         }
         else
         {
-            // starCursor = starCursorStoredPlace;
             starCursor = buttons.end() - 1;
         }
     }
-    // starCursorStoredPlace = starCursor;
-    // updateStarCursor();
 }
 
-void goToLeftButton(std::vector<Button>::iterator &parentButton)
+void goToLeftButton()
 {
-    if (parentButton->getButtonType() == SUB_BUTTONS_INSIDE)
+    if (starCursor->getButtonType() == SUB_BUTTONS_INSIDE)
     {
-        if (parentButton->getSubButtons().size() > 0)
+        if (starCursor->subButtons.size() > 0)
         {
-            if (parentButton->starCursorOnSubbutton->getLabelText() == parentButton->subButtons.begin()->getLabelText())
+            if (starCursor->starCursorOnSubbutton == starCursor->subButtons.begin())
             {
-                parentButton->starCursorOnSubbutton = parentButton->subButtons.end() - 1;
-                debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
+                starCursor->starCursorOnSubbutton = starCursor->subButtons.end() - 1;
             }
             else
             {
-                --parentButton->starCursorOnSubbutton;
-                // debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
+                --(starCursor->starCursorOnSubbutton);
             }
         }
     }
 }
 
-void goToRightButton(std::vector<Button>::iterator &parentButton)
+void goToRightButton()
 {
-    if (parentButton->getButtonType() == SUB_BUTTONS_INSIDE)
+    if (starCursor->getButtonType() == SUB_BUTTONS_INSIDE)
     {
-        if (parentButton->getSubButtons().size() > 0)
+        if (starCursor->subButtons.size() > 0)
         {
-            auto help = parentButton->subButtons.end() - 1;
-            if (parentButton->starCursorOnSubbutton->getLabelText() == help->getLabelText())
+            if (starCursor->starCursorOnSubbutton == starCursor->subButtons.end() - 1)
             {
-                parentButton->starCursorOnSubbutton = parentButton->subButtons.begin();
-                debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
+                starCursor->starCursorOnSubbutton = starCursor->subButtons.begin();
             }
             else
             {
-                ++parentButton->starCursorOnSubbutton;
-                // debugPrint(parentButton->starCursorOnSubbutton->getLabelText(), 10, 40);
+                ++(starCursor->starCursorOnSubbutton);
             }
         }
     }

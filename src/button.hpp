@@ -40,7 +40,7 @@ public:
 
 void goToLowerButton();
 void goToUpperButton();
-void goToLeftButton(std::vector<Button>::iterator &parentButton);
-void goToRightButton(std::vector<Button>::iterator &parentBtton);
+void goToLeftButton();
+void goToRightButton();
 void drawButtons();
 void updateStarCursor();
