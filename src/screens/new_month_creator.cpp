@@ -7,9 +7,9 @@ void NewMonthCreator::setup()
     drawFrame();
     drawBanner();
     buttons.clear();
-    buttons.emplace_back(Button({Button("1", 38, 4, 1),
-                                 Button("2", 38, 23, 1),
-                                 Button("3", 38, 44, 1)}));
+    buttons.emplace_back(Button({Button("", 38, 4, 1),
+                                 Button("", 38, 23, 1),
+                                 Button("", 38, 44, 1)}));
     buttons.emplace_back(Button("Back", 39, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
@@ -30,68 +30,84 @@ void NewMonthCreator::loop()
         case KEY_UP:
             goToUpperButton();
             drawButtons();
+            drawEnteredPurchases();
             break;
         case KEY_DOWN:
             goToLowerButton();
             drawButtons();
+            drawEnteredPurchases();
             break;
         case KEY_LEFT:
             goToLeftButton();
             drawButtons();
+            drawEnteredPurchases();
             break;
         case KEY_RIGHT:
             goToRightButton();
             drawButtons();
+            drawEnteredPurchases();
             break;
         case '\n': // ENTER
-            // inputWord.substr(1, inputWord.size() - 2)
             if (starCursor->getLabelText() == "Back")
             {
                 currentScreen = starCursor->getPointingToScreen();
             }
-            //     else
-            //     {
-            //         std::string newPurchaseCellText = inputWord.substr(1, inputWord.size() - 2);
-            //         starCursor->setLabelText(newPurchaseCellText);
-            //         inputWord = "[]";
-            //         clear();
-            //         refresh();
-            //         drawFrame();
-            //         drawBanner();
-            //         drawButtons();
-            //         printTextInColor("[" + newPurchaseCellText + "]", starCursor->getRow(), LEFT_MARGIN, textColor::white_black);
-            //     }
-            break;
-        // case KEY_BACKSPACE:
-        //     if (inputWord.length() > 2)
-        //     {
-        //         inputWord.erase(inputWord.length() - 2, 1);
-        //         clear();
-        //         refresh();
-        //         drawFrame();
-        //         drawBanner();
-        //         drawButtons();
-        //         printTextInColor("Purchase: " + inputWord, 35, LEFT_MARGIN, textColor::white_black);
-        //     }
-        //     break;
-        default:
-
-            if (starCursor->hasSubButtons())
+            else
             {
-                // refreshScreen();
-                // debugPrint(starCursor->getStarCursorOnSubbutton()->getLabelText(), 20, 20);
-                starCursor->getStarCursorOnSubbutton()->addCharToLabelText(inputChar);
+                // std::string categoryTmp;
+                // std::string costTmp;
+                // std::string shopNameTmp;
+
+                // categoryTmp = starCursor->getSubButtons().at(0).getLabelText();
+                // costTmp = starCursor->getSubButtons().at(1).getLabelText();
+                // shopNameTmp = starCursor->getSubButtons().at(2).getLabelText();
+
+                purchases.push_back(Purchase(starCursor->getSubButtons().at(0).getLabelText(),
+                                             starCursor->getSubButtons().at(1).getLabelText(),
+                                             starCursor->getSubButtons().at(2).getLabelText()));
+
+                starCursor->getSubButtons().at(0).setLabelText("");
+                starCursor->getSubButtons().at(1).setLabelText("");
+                starCursor->getSubButtons().at(2).setLabelText("");
+
                 refreshScreen();
+                drawEnteredPurchases();
+                // debugPrint(categoryTmp + costTmp + shopNameTmp, 10 + help, 40);
             }
 
-            // inputWord += inputChar;
-            //             refreshScreen();
-            //             debugPrint(inputWord, 30, 40);
-            //             break;
-
+            break;
+        case KEY_BACKSPACE:
+            if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
+            {
+                starCursor->getStarCursorOnSubbutton()->getLabelText().erase(starCursor->getStarCursorOnSubbutton()->getLabelText().length() - 1, 1);
+                refreshScreen();
+                drawEnteredPurchases();
+            }
+            break;
+        default:
+            if (starCursor->hasSubButtons())
+            {
+                starCursor->getStarCursorOnSubbutton()->addCharToLabelText(inputChar);
+                refreshScreen();
+                drawEnteredPurchases();
+            }
             break;
         }
     }
+}
+
+void NewMonthCreator::drawEnteredPurchases()
+{
+    attron(A_BOLD | COLOR_PAIR(textColor::green_black));
+    int rowIterator = 0;
+    for (auto &purchase : purchases)
+    {
+        mvprintw(10 + rowIterator, 4, purchase.category.c_str());
+        mvprintw(10 + rowIterator, 4 + purchase.category.size() + 1, purchase.cost.c_str());
+        mvprintw(10 + rowIterator, 4 + purchase.category.size() + 1 + purchase.cost.size() + 1, purchase.shopName.c_str());
+        rowIterator++;
+    }
+    attroff(A_BOLD | COLOR_PAIR(textColor::green_black));
 }
 
 void NewMonthCreator::setCurrentScreen()

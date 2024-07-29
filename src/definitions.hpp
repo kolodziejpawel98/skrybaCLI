@@ -23,7 +23,8 @@ enum textColor
 {
     red_black = 1,
     white_black,
-    blue_black
+    blue_black,
+    green_black
 };
 
 namespace cursor

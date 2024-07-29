@@ -7,9 +7,9 @@
 class Purchase
 {
 public:
-    Purchase(std::string, int, std::string);
+    Purchase(std::string, std::string, std::string);
 
     std::string category;
-    int cost;
+    std::string cost;
     std::string shopName;
 };

@@ -5,4 +5,4 @@
 #include "definitions.hpp"
 #include "purchase.hpp"
 
-Purchase::Purchase(std::string category, int cost, std::string shopName) : category(category), cost(cost), shopName(shopName){};
+Purchase::Purchase(std::string category, std::string cost, std::string shopName) : category(category), cost(cost), shopName(shopName) {};

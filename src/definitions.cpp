@@ -13,6 +13,7 @@ void initColors()
     init_pair(textColor::red_black, COLOR_RED, COLOR_BLACK);
     init_pair(textColor::white_black, COLOR_WHITE, COLOR_BLACK);
     init_pair(textColor::blue_black, COLOR_BLUE, COLOR_BLACK);
+    init_pair(textColor::green_black, COLOR_GREEN, COLOR_BLACK);
 }
 void setup()
 {
