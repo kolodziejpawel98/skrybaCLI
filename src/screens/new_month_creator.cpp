@@ -10,7 +10,8 @@ void NewMonthCreator::setup()
     buttons.emplace_back(Button({Button("", 38, 4, 1),
                                  Button("", 38, 23, 1),
                                  Button("", 38, 44, 1)}));
-    buttons.emplace_back(Button("Back", 39, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Edit list", 39, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Back", 40, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
@@ -54,26 +55,33 @@ void NewMonthCreator::loop()
             }
             else
             {
-                // std::string categoryTmp;
-                // std::string costTmp;
-                // std::string shopNameTmp;
+                if (starCursor->getStarCursorOnSubbutton() != starCursor->getSubButtons().end() - 1)
+                {
+                    starCursor->getStarCursorOnSubbutton()++;
+                    refreshScreen();
+                    drawEnteredPurchases();
+                }
+                else
+                {
+                    std::string categoryTmp;
+                    std::string costTmp;
+                    std::string shopNameTmp;
 
-                // categoryTmp = starCursor->getSubButtons().at(0).getLabelText();
-                // costTmp = starCursor->getSubButtons().at(1).getLabelText();
-                // shopNameTmp = starCursor->getSubButtons().at(2).getLabelText();
+                    categoryTmp = starCursor->getSubButtons().at(0).getLabelText();
+                    costTmp = starCursor->getSubButtons().at(1).getLabelText();
+                    shopNameTmp = starCursor->getSubButtons().at(2).getLabelText();
 
-                purchases.push_back(Purchase(starCursor->getSubButtons().at(0).getLabelText(),
-                                             starCursor->getSubButtons().at(1).getLabelText(),
-                                             starCursor->getSubButtons().at(2).getLabelText()));
+                    purchases.push_back(Purchase(starCursor->getSubButtons().at(0).getLabelText(),
+                                                 starCursor->getSubButtons().at(1).getLabelText(),
+                                                 starCursor->getSubButtons().at(2).getLabelText()));
 
-                starCursor->getSubButtons().at(0).setLabelText("");
-                starCursor->getSubButtons().at(1).setLabelText("");
-                starCursor->getSubButtons().at(2).setLabelText("");
-                starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
-                refreshScreen();
-                drawEnteredPurchases();
-
-                // debugPrint(categoryTmp + costTmp + shopNameTmp, 10 + help, 40);
+                    starCursor->getSubButtons().at(0).setLabelText("");
+                    starCursor->getSubButtons().at(1).setLabelText("");
+                    starCursor->getSubButtons().at(2).setLabelText("");
+                    starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
+                    refreshScreen();
+                    drawEnteredPurchases();
+                }
             }
 
             break;
