@@ -69,9 +69,10 @@ void NewMonthCreator::loop()
                 starCursor->getSubButtons().at(0).setLabelText("");
                 starCursor->getSubButtons().at(1).setLabelText("");
                 starCursor->getSubButtons().at(2).setLabelText("");
-
+                starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
                 refreshScreen();
                 drawEnteredPurchases();
+
                 // debugPrint(categoryTmp + costTmp + shopNameTmp, 10 + help, 40);
             }
 
@@ -98,16 +99,34 @@ void NewMonthCreator::loop()
 
 void NewMonthCreator::drawEnteredPurchases()
 {
-    attron(A_BOLD | COLOR_PAIR(textColor::green_black));
     int rowIterator = 0;
-    for (auto &purchase : purchases)
+    if (purchases.size() <= 10)
     {
-        mvprintw(10 + rowIterator, 4, purchase.category.c_str());
-        mvprintw(10 + rowIterator, 4 + purchase.category.size() + 1, purchase.cost.c_str());
-        mvprintw(10 + rowIterator, 4 + purchase.category.size() + 1 + purchase.cost.size() + 1, purchase.shopName.c_str());
-        rowIterator++;
+        for (auto &purchase : purchases)
+        {
+            attron(A_BOLD | COLOR_PAIR(textColor::green_black));
+            mvprintw(10 + rowIterator, 4, purchase.category.c_str());
+            mvprintw(10 + rowIterator, 4 + purchase.category.size() + 1, purchase.cost.c_str());
+            mvprintw(10 + rowIterator, 4 + purchase.category.size() + 1 + purchase.cost.size() + 1, purchase.shopName.c_str());
+            rowIterator += 2;
+            attroff(A_BOLD | COLOR_PAIR(textColor::green_black));
+        }
     }
-    attroff(A_BOLD | COLOR_PAIR(textColor::green_black));
+    else
+    {
+        refreshScreen();
+        int help = purchases.size() - 10;
+        rowIterator = 0;
+        for (int i = help; i < 10 + help; i++)
+        {
+            attron(A_BOLD | COLOR_PAIR(textColor::green_black));
+            mvprintw(10 + rowIterator, 4, purchases.at(i).category.c_str());
+            mvprintw(10 + rowIterator, 4 + purchases.at(i).category.size() + 1, purchases.at(i).cost.c_str());
+            mvprintw(10 + rowIterator, 4 + purchases.at(i).category.size() + 1 + purchases.at(i).cost.size() + 1, purchases.at(i).shopName.c_str());
+            rowIterator += 2;
+            attroff(A_BOLD | COLOR_PAIR(textColor::green_black));
+        }
+    }
 }
 
 void NewMonthCreator::setCurrentScreen()
