@@ -13,6 +13,7 @@ enum CurrentScreen
     NEW_MONTH_INTRO,
     NEW_MONTH_CREATOR,
     HISTORY,
+    PURCHASES_LIST_EDIT,
     EMPTY,
     EXIT
 };

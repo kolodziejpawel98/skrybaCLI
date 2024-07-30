@@ -10,7 +10,7 @@ void NewMonthCreator::setup()
     buttons.emplace_back(Button({Button("", 38, 4, 1),
                                  Button("", 38, 23, 1),
                                  Button("", 38, 44, 1)}));
-    buttons.emplace_back(Button("Edit list", 39, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Edit list", 39, 4, PURCHASES_LIST_EDIT));
     buttons.emplace_back(Button("Back", 40, 4, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
@@ -48,8 +48,8 @@ void NewMonthCreator::loop()
             drawButtons();
             drawEnteredPurchases();
             break;
-        case '\n': // ENTER
-            if (starCursor->getLabelText() == "Back")
+        case '\n':                                                                                 // ENTER
+            if (starCursor->getLabelText() == "Back" or starCursor->getLabelText() == "Edit list") // TODO CHANGE!!!!!!!!!!
             {
                 currentScreen = starCursor->getPointingToScreen();
             }

@@ -15,6 +15,7 @@ add_executable(skrybaCLI
     src/screens/main_menu.cpp
     src/screens/new_month_intro.cpp
     src/screens/new_month_creator.cpp
+    src/screens/purchases_list_edit.cpp
     src/screens/history.cpp
 )
 

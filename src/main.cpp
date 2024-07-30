@@ -7,6 +7,7 @@
 #include "screens/main_menu.hpp"
 #include "screens/new_month_intro.hpp"
 #include "screens/new_month_creator.hpp"
+#include "screens/purchases_list_edit.hpp"
 #include "screens/history.hpp"
 
 int main()
@@ -15,6 +16,7 @@ int main()
     std::unique_ptr<MainMenu> mainmenu = std::make_unique<MainMenu>();
     std::unique_ptr<NewMonthIntro> newMonthIntro = std::make_unique<NewMonthIntro>();
     std::unique_ptr<NewMonthCreator> newMonthCreator = std::make_unique<NewMonthCreator>();
+    std::unique_ptr<PurchasesListEdit> purchasesListEdit = std::make_unique<PurchasesListEdit>();
     std::unique_ptr<History> history = std::make_unique<History>();
 
     setup();
@@ -44,6 +46,10 @@ int main()
 
             newMonthCreator->setup();
             newMonthCreator->loop();
+            break;
+        case PURCHASES_LIST_EDIT:
+            purchasesListEdit->setup();
+            purchasesListEdit->loop();
             break;
         case HISTORY:
             history->setup();
