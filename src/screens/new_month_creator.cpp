@@ -17,6 +17,7 @@ void NewMonthCreator::setup()
         starCursor = buttons.begin();
     }
     drawButtons();
+    drawEnteredPurchases();
 }
 
 void NewMonthCreator::loop()

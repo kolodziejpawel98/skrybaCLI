@@ -48,6 +48,7 @@ int main()
             newMonthCreator->loop();
             break;
         case PURCHASES_LIST_EDIT:
+            purchasesListEdit->purchases = newMonthCreator->purchases;
             purchasesListEdit->setup();
             purchasesListEdit->loop();
             break;

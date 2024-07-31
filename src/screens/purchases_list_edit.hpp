@@ -17,4 +17,7 @@ public:
     void loop() override;
     void setCurrentScreen() override;
     int inputChar;
+    std::vector<Purchase> purchases;
+
+    void savePurchasesAsButtons();
 };
