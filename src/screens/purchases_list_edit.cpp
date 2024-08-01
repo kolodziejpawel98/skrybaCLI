@@ -9,7 +9,8 @@ void PurchasesListEdit::setup()
     debugPrint("PURCHASE LIST EDIT");
     buttons.clear();
     savePurchasesAsButtons();
-    buttons.emplace_back(Button("Back", 38, 4, NEW_MONTH_CREATOR));
+    buttons.emplace_back(Button("Save", 37, 4, NEW_MONTH_CREATOR));
+    buttons.emplace_back(Button("Back without saving", 38, 4, NEW_MONTH_CREATOR));
     if (!buttons.empty())
     {
         starCursor = buttons.end() - 1;
@@ -46,53 +47,24 @@ void PurchasesListEdit::loop()
             drawButtons();
             // drawEnteredPurchases();
             break;
-        // case '\n':                                                                                 // ENTER
-        //     if (starCursor->getLabelText() == "Back" or starCursor->getLabelText() == "Edit list") // TODO CHANGE!!!!!!!!!!
-        //     {
-        //         currentScreen = starCursor->getPointingToScreen();
-        //     }
-        //     else
-        //     {
-        //         if (starCursor->getStarCursorOnSubbutton() != starCursor->getSubButtons().end() - 1)
-        //         {
-        //             starCursor->getStarCursorOnSubbutton()++;
-        //             refreshScreen();
-        //             drawEnteredPurchases();
-        //         }
-        //         else
-        //         {
-        //             std::string categoryTmp;
-        //             std::string costTmp;
-        //             std::string shopNameTmp;
-
-        //             categoryTmp = starCursor->getSubButtons().at(0).getLabelText();
-        //             costTmp = starCursor->getSubButtons().at(1).getLabelText();
-        //             shopNameTmp = starCursor->getSubButtons().at(2).getLabelText();
-
-        //             purchases.push_back(Purchase(starCursor->getSubButtons().at(0).getLabelText(),
-        //                                          starCursor->getSubButtons().at(1).getLabelText(),
-        //                                          starCursor->getSubButtons().at(2).getLabelText()));
-
-        //             starCursor->getSubButtons().at(0).setLabelText("");
-        //             starCursor->getSubButtons().at(1).setLabelText("");
-        //             starCursor->getSubButtons().at(2).setLabelText("");
-        //             starCursor->getStarCursorOnSubbutton() = starCursor->getSubButtons().begin();
-        //             refreshScreen();
-        //             drawEnteredPurchases();
-        //         }
-        //     }
-
-        //     break;
-        // case KEY_BACKSPACE:
-        //     if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
-        //     {
-        //         starCursor->getStarCursorOnSubbutton()->getLabelText().erase(starCursor->getStarCursorOnSubbutton()->getLabelText().length() - 1, 1);
-        //         refreshScreen();
-        //         drawEnteredPurchases();
-        //     }
-        //     break;
         case '\n': // ENTER
-            currentScreen = starCursor->getPointingToScreen();
+            if (starCursor == buttons.end() - 1)
+            {
+                currentScreen = starCursor->getPointingToScreen();
+            }
+            else if (starCursor == buttons.end() - 2)
+            {
+                updatePurchasesWithChangesInButtons();
+                currentScreen = starCursor->getPointingToScreen();
+            }
+            break;
+        case KEY_BACKSPACE:
+            if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
+            {
+                starCursor->getStarCursorOnSubbutton()->getLabelText().erase(starCursor->getStarCursorOnSubbutton()->getLabelText().length() - 1, 1);
+                refreshScreen();
+                // drawEnteredPurchases();
+            }
             break;
         }
     }
@@ -109,6 +81,17 @@ void PurchasesListEdit::savePurchasesAsButtons()
                                      Button(purchase.shopName, 10 + rowIterator, 44, 1)}));
         rowIterator += 2;
     }
+}
+
+void PurchasesListEdit::updatePurchasesWithChangesInButtons()
+{
+    // purchases.clear(); //need to edit new_month_creator's purchases, not current class purchases list
+    // for (auto &button : buttons)
+    // {
+    //     purchases.emplace_back(Purchase(button.getSubButtons().at(0).getLabelText(),
+    //                                     button.getSubButtons().at(1).getLabelText(),
+    //                                     button.getSubButtons().at(2).getLabelText()));
+    // }
 }
 
 void PurchasesListEdit::setCurrentScreen()
