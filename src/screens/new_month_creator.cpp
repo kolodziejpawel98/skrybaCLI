@@ -2,16 +2,13 @@
 
 void NewMonthCreator::setup()
 {
-    clear();
-    refresh();
-    drawFrame();
-    drawBanner();
+    refreshScreenWithoutButtons();
     buttons.clear();
-    buttons.emplace_back(Button({Button("", 38, 4, 1),
-                                 Button("", 38, 23, 1),
-                                 Button("", 38, 44, 1)}));
-    buttons.emplace_back(Button("Edit list", 39, 4, PURCHASES_LIST_EDIT));
-    buttons.emplace_back(Button("Back", 40, 4, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button({Button("", FIRST_BUTTON_ROW - 1, FIRST_BUTTON_COL),
+                                 Button("", FIRST_BUTTON_ROW - 1, FIRST_BUTTON_COL + 40),
+                                 Button("", FIRST_BUTTON_ROW - 1, FIRST_BUTTON_COL + 80)}));
+    buttons.emplace_back(Button("Edit list", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, PURCHASES_LIST_EDIT));
+    buttons.emplace_back(Button("Back", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, NEW_MONTH_INTRO));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
@@ -25,6 +22,13 @@ void NewMonthCreator::loop()
     while (currentScreen == NEW_MONTH_CREATOR)
     {
         printTextInColor("Month: " + monthName, 8, LEFT_MARGIN, textColor::white_black);
+        printTextInColor("Category: ", FIRST_BUTTON_ROW - 2, FIRST_BUTTON_COL, textColor::white_black);
+        printTextInColor("Cost: ", FIRST_BUTTON_ROW - 2, FIRST_BUTTON_COL + 40, textColor::white_black);
+        printTextInColor("Shop name: ", FIRST_BUTTON_ROW - 2, FIRST_BUTTON_COL + 80, textColor::white_black);
+        printTextInColor("------------------------------------------------------------------------------------------------------",
+                         FIRST_BUTTON_ROW,
+                         LEFT_MARGIN,
+                         textColor::white_black);
         inputChar = getch();
         switch (inputChar)
         {

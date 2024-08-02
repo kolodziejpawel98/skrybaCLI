@@ -12,7 +12,6 @@
 
 int main()
 {
-
     std::unique_ptr<MainMenu> mainmenu = std::make_unique<MainMenu>();
     std::unique_ptr<NewMonthIntro> newMonthIntro = std::make_unique<NewMonthIntro>();
     std::unique_ptr<NewMonthCreator> newMonthCreator = std::make_unique<NewMonthCreator>();
@@ -23,7 +22,6 @@ int main()
     refresh();
     while (true)
     {
-
         switch (currentScreen)
         {
         case MAIN_MENU:
@@ -35,14 +33,14 @@ int main()
             newMonthIntro->loop();
             break;
         case NEW_MONTH_CREATOR:
-            if (newMonthIntro->monthName != "")
-            {
-                newMonthCreator->monthName = newMonthIntro->monthName;
-            }
-            else
-            {
-                newMonthCreator->monthName = "empty";
-            }
+            // if (newMonthIntro->monthName != "")
+            // {
+            newMonthCreator->monthName = newMonthIntro->monthName;
+            // }
+            // else
+            // {
+            //     newMonthCreator->monthName = "empty";
+            // }
 
             newMonthCreator->setup();
             newMonthCreator->loop();

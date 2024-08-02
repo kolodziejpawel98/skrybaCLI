@@ -2,14 +2,11 @@
 
 void MainMenu::setup()
 {
-    clear();
-    refresh();
-    drawFrame();
-    drawBanner();
+    refreshScreenWithoutButtons();
     buttons.clear();
-    buttons.emplace_back(Button("Create new report", 38, 4, NEW_MONTH_INTRO));
-    buttons.emplace_back(Button("Previous reports", 39, 4, HISTORY));
-    buttons.emplace_back(Button("Quit", 40, 4, EXIT));
+    buttons.emplace_back(Button("Create new report", FIRST_BUTTON_ROW, FIRST_BUTTON_COL, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Previous reports", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, HISTORY));
+    buttons.emplace_back(Button("Quit", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, EXIT));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();
@@ -33,7 +30,7 @@ void MainMenu::loop()
             goToLowerButton();
             drawButtons();
             break;
-        case '\n': // ENTER
+        case '\n':
             currentScreen = starCursor->getPointingToScreen();
             break;
         }

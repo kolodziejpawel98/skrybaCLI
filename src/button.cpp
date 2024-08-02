@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#include "definitions.hpp"
 #include "button.hpp"
+#include "definitions.hpp"
 
 Button::Button(std::string labelText,
                uint16_t row,
@@ -12,6 +12,13 @@ Button::Button(std::string labelText,
                                  row(row),
                                  column(column),
                                  nextScreen(nextScreen) {}
+
+Button::Button(std::string labelText,
+               uint16_t row,
+               uint16_t column) : labelText(labelText),
+                                  row(row),
+                                  column(column),
+                                  nextScreen(EMPTY) {}
 
 Button::Button(std::vector<Button> subButtons) : subButtons(subButtons)
 {

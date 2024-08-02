@@ -41,6 +41,8 @@ void refreshScreen();
 void refreshScreenWithoutButtons();
 
 const uint8_t LEFT_MARGIN = 4;
+const uint8_t FIRST_BUTTON_ROW = 38;
+const uint8_t FIRST_BUTTON_COL = LEFT_MARGIN;
 extern std::vector<std::string> categories;
 
 extern std::vector<Button> buttons;

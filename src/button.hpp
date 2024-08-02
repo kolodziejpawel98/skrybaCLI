@@ -2,14 +2,13 @@
 #include <string>
 #include <vector>
 
-#include "interfaceElement.hpp"
-
 #pragma once
 
-class Button : public InterfaceElement
+class Button
 {
 public:
     Button(std::string, uint16_t, uint16_t, int);
+    Button(std::string, uint16_t, uint16_t);
     Button(std::vector<Button>);
     void draw(bool isCursorOnMe = false);
     std::string &getLabelText() { return labelText; }
@@ -17,8 +16,8 @@ public:
     void addCharToLabelText(char letter) { labelText += letter; }
     int getPointingToScreen() { return nextScreen; }
     std::vector<Button> &getSubButtons() { return subButtons; }
-    uint16_t &getCol() override { return column; }
-    uint16_t &getRow() override { return row; }
+    uint16_t &getCol() { return column; }
+    uint16_t &getRow() { return row; }
     std::vector<Button>::iterator &getStarCursorOnSubbutton() { return starCursorOnSubbutton; }
     bool hasSubButtons() const { return !subButtons.empty(); }
 

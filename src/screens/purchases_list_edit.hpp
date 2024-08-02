@@ -7,7 +7,6 @@
 #include "../definitions.hpp"
 #include "../decorations.hpp"
 #include "../button.hpp"
-#include "../inputLabel.hpp"
 #include "../purchase.hpp"
 
 class PurchasesListEdit : public Screen
