@@ -51,6 +51,7 @@ int main()
             purchasesListEdit->purchases = newMonthCreator->purchases;
             purchasesListEdit->setup();
             purchasesListEdit->loop();
+            newMonthCreator->purchases = purchasesListEdit->getUpdatedPurchasesList();
             break;
         case HISTORY:
             history->setup();

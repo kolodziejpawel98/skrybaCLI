@@ -20,5 +20,5 @@ public:
     std::vector<Purchase> purchases;
 
     void savePurchasesAsButtons();
-    void updatePurchasesWithChangesInButtons();
+    std::vector<Purchase> getUpdatedPurchasesList();
 };

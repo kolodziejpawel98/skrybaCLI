@@ -22,7 +22,6 @@ void NewMonthCreator::setup()
 
 void NewMonthCreator::loop()
 {
-
     while (currentScreen == NEW_MONTH_CREATOR)
     {
         printTextInColor("Month: " + monthName, 8, LEFT_MARGIN, textColor::white_black);

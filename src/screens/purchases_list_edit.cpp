@@ -54,7 +54,7 @@ void PurchasesListEdit::loop()
             }
             else if (starCursor == buttons.end() - 2)
             {
-                updatePurchasesWithChangesInButtons();
+                // in main.cpp new purchases are passed to previous screen
                 currentScreen = starCursor->getPointingToScreen();
             }
             break;
@@ -64,6 +64,13 @@ void PurchasesListEdit::loop()
                 starCursor->getStarCursorOnSubbutton()->getLabelText().erase(starCursor->getStarCursorOnSubbutton()->getLabelText().length() - 1, 1);
                 refreshScreen();
                 // drawEnteredPurchases();
+            }
+            break;
+        default:
+            if (starCursor->hasSubButtons())
+            {
+                starCursor->getStarCursorOnSubbutton()->addCharToLabelText(inputChar);
+                refreshScreen();
             }
             break;
         }
@@ -83,15 +90,17 @@ void PurchasesListEdit::savePurchasesAsButtons()
     }
 }
 
-void PurchasesListEdit::updatePurchasesWithChangesInButtons()
+std::vector<Purchase> PurchasesListEdit::getUpdatedPurchasesList()
 {
-    // purchases.clear(); //need to edit new_month_creator's purchases, not current class purchases list
-    // for (auto &button : buttons)
-    // {
-    //     purchases.emplace_back(Purchase(button.getSubButtons().at(0).getLabelText(),
-    //                                     button.getSubButtons().at(1).getLabelText(),
-    //                                     button.getSubButtons().at(2).getLabelText()));
-    // }
+    std::vector<Purchase> newPurchases = {};
+    for (auto it = buttons.begin(); it < buttons.end() - 2; it++)
+    {
+        // newPurchases.emplace_back(Purchase(button.getSubButtons().at(0).getLabelText(),
+        //                                    button.getSubButtons().at(1).getLabelText(),
+        //                                    button.getSubButtons().at(2).getLabelText()));
+        newPurchases.emplace_back("-", "-", "-");
+    }
+    return newPurchases;
 }
 
 void PurchasesListEdit::setCurrentScreen()
