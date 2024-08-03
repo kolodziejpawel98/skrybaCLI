@@ -52,8 +52,8 @@ void NewMonthCreator::loop()
             drawButtons();
             drawEnteredPurchases();
             break;
-        case '\n':                                                                                 // ENTER
-            if (starCursor->getLabelText() == "Back" or starCursor->getLabelText() == "Edit list") // TODO CHANGE!!!!!!!!!!
+        case '\n':
+            if (starCursor == buttons.end() - 1 or starCursor == buttons.end() - 2)
             {
                 currentScreen = starCursor->getPointingToScreen();
             }
