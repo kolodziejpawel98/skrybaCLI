@@ -3,7 +3,7 @@
 void PurchasesListEdit::setup()
 {
     refreshScreenWithoutButtons();
-    debugPrint("PURCHASE LIST EDIT");
+    // debugPrint("PURCHASE LIST EDIT");
     buttons.clear();
     savePurchasesAsButtons();
     buttons.emplace_back(Button("Save", FIRST_BUTTON_ROW, FIRST_BUTTON_COL, NEW_MONTH_CREATOR));
@@ -18,9 +18,7 @@ void PurchasesListEdit::setup()
 
 void PurchasesListEdit::loop()
 {
-    printTextInColor("Category: ", 9, FIRST_BUTTON_COL, textColor::green_black);
-    printTextInColor("Cost: ", 9, FIRST_BUTTON_COL + 40, textColor::green_black);
-    printTextInColor("Shop name: ", 9, FIRST_BUTTON_COL + 80, textColor::green_black);
+    drawLabelDescription();
     refresh();
     while (currentScreen == PURCHASES_LIST_EDIT)
     {
@@ -60,6 +58,7 @@ void PurchasesListEdit::loop()
                 starCursor->getStarCursorOnSubbutton()->getLabelText().erase(starCursor->getStarCursorOnSubbutton()->getLabelText().length() - 1, 1);
                 refreshScreen();
                 // drawEnteredPurchases();
+                drawLabelDescription();
             }
             break;
         default:
@@ -68,9 +67,17 @@ void PurchasesListEdit::loop()
                 starCursor->getStarCursorOnSubbutton()->addCharToLabelText(inputChar);
             }
             refreshScreen();
+            drawLabelDescription();
             break;
         }
     }
+}
+
+void PurchasesListEdit::drawLabelDescription()
+{
+    printTextInColor("Category: ", 9, FIRST_BUTTON_COL, textColor::green_black);
+    printTextInColor("Cost: ", 9, FIRST_BUTTON_COL + 40, textColor::green_black);
+    printTextInColor("Shop name: ", 9, FIRST_BUTTON_COL + 80, textColor::green_black);
 }
 
 void PurchasesListEdit::savePurchasesAsButtons()

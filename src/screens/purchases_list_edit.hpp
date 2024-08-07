@@ -19,5 +19,6 @@ public:
     std::vector<Purchase> purchases;
 
     void savePurchasesAsButtons();
+    void drawLabelDescription();
     std::vector<Purchase> getUpdatedPurchasesList();
 };
