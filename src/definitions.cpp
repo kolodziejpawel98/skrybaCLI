@@ -55,30 +55,43 @@ void refreshScreen()
     drawButtons();
 }
 
-std::vector<std::string> categories = {
+// std::vector<std::string> categories = {
+//     "spozywka",
+//     "rzeczy",
+//     "oplaty stale",
+//     "transport (bez jakdojade)",
+//     "transport (jakdojade)",
+//     "jedzenie na miescie",
+//     "jedzenie zamawiane"};
+
+std::vector<Button> buttons = {};
+std::vector<Button>::iterator starCursor = buttons.begin();
+
+std::vector<std::string> autofillDictionary = {
+    "styczen",
+    "luty",
+    "marzec",
+    "kwiecien",
+    "maj",
+    "czerwiec",
+    "lipiec",
+    "sierpien",
+    "wrzesien",
+    "pazdziernik",
+    "listopad",
+    "grudzien",
+    // ##########
     "spozywka",
     "rzeczy",
     "oplaty stale",
     "transport (bez jakdojade)",
     "transport (jakdojade)",
     "jedzenie na miescie",
-    "jedzenie zamawiane"};
-
-std::vector<Button> buttons = {};
-std::vector<Button>::iterator starCursor = buttons.begin();
-
-std::vector<std::string> autofillDictionary = {"styczen",
-                                               "luty",
-                                               "marzec",
-                                               "kwiecien",
-                                               "maj",
-                                               "czerwiec",
-                                               "lipiec",
-                                               "sierpien",
-                                               "wrzesien",
-                                               "pazdziernik",
-                                               "listopad",
-                                               "grudzien"};
+    "jedzenie zamawiane",
+    // ##########
+    "lidl",
+    "biedronka",
+    "zabka"};
 
 std::string checkAutofill(std::string wordPrefix)
 {

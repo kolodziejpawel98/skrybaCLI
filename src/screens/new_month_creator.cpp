@@ -97,11 +97,37 @@ void NewMonthCreator::loop()
                 drawEnteredPurchases();
             }
             break;
+        case '\t':
+            refreshScreen();
+            if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
+            {
+                starCursor->getStarCursorOnSubbutton()->setLabelText(checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText()));
+            }
+            printTextInColor(
+                starCursor->getStarCursorOnSubbutton()->getLabelText(),
+                starCursor->getStarCursorOnSubbutton()->getRow(),
+                starCursor->getStarCursorOnSubbutton()->getCol() + 5,
+                textColor::red_black);
+            break;
         default:
             if (starCursor->hasSubButtons())
             {
                 starCursor->getStarCursorOnSubbutton()->addCharToLabelText(inputChar);
-                refreshScreen();
+                if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
+                {
+                    refreshScreen();
+                    printTextInColor(
+                        checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText()),
+                        starCursor->getStarCursorOnSubbutton()->getRow(),
+                        starCursor->getStarCursorOnSubbutton()->getCol() + 5,
+                        textColor::white_black, false);
+                    printTextInColor(
+                        starCursor->getStarCursorOnSubbutton()->getLabelText(),
+                        starCursor->getStarCursorOnSubbutton()->getRow(),
+                        starCursor->getStarCursorOnSubbutton()->getCol() + 5,
+                        textColor::red_black);
+                }
+
                 drawEnteredPurchases();
             }
             break;
