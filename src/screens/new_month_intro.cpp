@@ -14,18 +14,6 @@ void NewMonthIntro::setup()
     printTextInColor("Month name: ", FIRST_BUTTON_ROW - 3, LEFT_MARGIN, textColor::white_black);
 }
 
-std::string NewMonthIntro::checkAutofill(std::string wordPrefix)
-{
-    for (const auto &word : autofillDictionary)
-    {
-        if (word.compare(0, wordPrefix.length(), wordPrefix) == 0)
-        {
-            return word;
-        }
-    }
-    return wordPrefix;
-}
-
 void NewMonthIntro::loop()
 {
 

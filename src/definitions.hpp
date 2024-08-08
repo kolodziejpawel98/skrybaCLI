@@ -48,3 +48,4 @@ extern std::vector<std::string> categories;
 extern std::vector<Button> buttons;
 extern std::vector<Button>::iterator starCursor;
 extern std::vector<std::string> autofillDictionary;
+extern std::string checkAutofill(std::string wordPrefix);

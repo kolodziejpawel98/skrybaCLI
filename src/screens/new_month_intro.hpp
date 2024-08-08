@@ -14,7 +14,6 @@ public:
     void setup() override;
     void loop() override;
     void setCurrentScreen() override;
-    std::string checkAutofill(std::string);
 
     int inputChar;
     std::string inputWord = "";

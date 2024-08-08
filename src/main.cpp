@@ -33,14 +33,14 @@ int main()
             newMonthIntro->loop();
             break;
         case NEW_MONTH_CREATOR:
-            // if (newMonthIntro->monthName != "")
-            // {
-            newMonthCreator->monthName = newMonthIntro->monthName;
-            // }
-            // else
-            // {
-            //     newMonthCreator->monthName = "empty";
-            // }
+            if (newMonthIntro->monthName != "")
+            {
+                newMonthCreator->monthName = newMonthIntro->monthName;
+            }
+            else
+            {
+                newMonthCreator->monthName = "empty";
+            }
 
             newMonthCreator->setup();
             newMonthCreator->loop();
@@ -49,7 +49,10 @@ int main()
             purchasesListEdit->purchases = newMonthCreator->purchases;
             purchasesListEdit->setup();
             purchasesListEdit->loop();
-            newMonthCreator->purchases = purchasesListEdit->getUpdatedPurchasesList();
+            if (!purchasesListEdit->closeWithoutSaving)
+            {
+                newMonthCreator->purchases = purchasesListEdit->getUpdatedPurchasesList();
+            }
             break;
         case HISTORY:
             history->setup();

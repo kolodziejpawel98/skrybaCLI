@@ -2,6 +2,7 @@
 
 void PurchasesListEdit::setup()
 {
+    closeWithoutSaving = false;
     refreshScreenWithoutButtons();
     // debugPrint("PURCHASE LIST EDIT");
     buttons.clear();
@@ -42,13 +43,12 @@ void PurchasesListEdit::loop()
             drawButtons();
             break;
         case '\n':
-            if (starCursor == buttons.end() - 1)
+            if (starCursor == buttons.end() - 1 or starCursor == buttons.end() - 2)
             {
-                currentScreen = starCursor->getPointingToScreen();
-            }
-            else if (starCursor == buttons.end() - 2)
-            {
-                // in main.cpp new purchases are passed to previous screen
+                if (starCursor == buttons.end() - 1)
+                {
+                    closeWithoutSaving = true;
+                }
                 currentScreen = starCursor->getPointingToScreen();
             }
             break;

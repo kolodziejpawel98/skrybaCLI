@@ -79,3 +79,15 @@ std::vector<std::string> autofillDictionary = {"styczen",
                                                "pazdziernik",
                                                "listopad",
                                                "grudzien"};
+
+std::string checkAutofill(std::string wordPrefix)
+{
+    for (const auto &word : autofillDictionary)
+    {
+        if (word.compare(0, wordPrefix.length(), wordPrefix) == 0)
+        {
+            return word;
+        }
+    }
+    return wordPrefix;
+}
