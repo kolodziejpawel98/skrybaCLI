@@ -9,6 +9,11 @@
 #include "../button.hpp"
 #include "../purchase.hpp"
 
+#include "../include/json.hpp"
+
+// for convenience
+using json = nlohmann::json;
+
 class PurchasesListEdit : public Screen
 {
 public:

@@ -21,7 +21,9 @@ add_executable(skrybaCLI
 find_package(Curses REQUIRED)
 
 target_link_libraries(skrybaCLI PRIVATE ${CURSES_LIBRARIES})
+
 include_directories(${CURSES_INCLUDE_DIRS})
+include_directories(include)
 
 include_directories(src)
 include_directories(src/screens)
