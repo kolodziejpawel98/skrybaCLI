@@ -14,6 +14,7 @@ enum CurrentScreen
     NEW_MONTH_CREATOR,
     HISTORY,
     PURCHASES_LIST_EDIT,
+    SAVE_LIST,
     EMPTY,
     EXIT
 };
