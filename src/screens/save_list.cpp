@@ -13,6 +13,16 @@ void SaveList::setup()
     }
 
     drawButtons();
+    std::ifstream f("../example.json");
+    if (!f)
+    {
+        std::ofstream newFile("../example.json");
+        json emptyData = json::object();
+
+        newFile.close();
+        f.open("../example.json");
+    }
+    json data = json::parse(f);
 }
 
 void SaveList::loop()

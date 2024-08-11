@@ -10,6 +10,7 @@
 #include "../purchase.hpp"
 
 #include "../include/json.hpp"
+#include <fstream>
 
 // for convenience
 using json = nlohmann::json;
