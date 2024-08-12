@@ -20,7 +20,7 @@ public:
     int help = 0;
     std::string monthName = "";
     std::string inputWord = "";
-    std::vector<Purchase> purchases;
+    // std::vector<Purchase> purchases;
     std::vector<Button>::iterator starCursorOnInterfaceElement;
     void drawEnteredPurchases();
 };

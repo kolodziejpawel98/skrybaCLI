@@ -66,6 +66,7 @@ void refreshScreen()
 
 std::vector<Button> buttons = {};
 std::vector<Button>::iterator starCursor = buttons.begin();
+std::vector<Purchase> purchases = {};
 
 std::vector<std::string> autofillDictionary = {
     "styczen",

@@ -48,13 +48,13 @@ int main()
             newMonthCreator->loop();
             break;
         case PURCHASES_LIST_EDIT:
-            purchasesListEdit->purchases = newMonthCreator->purchases;
+            // purchasesListEdit->purchases = newMonthCreator->purchases;
             purchasesListEdit->setup();
             purchasesListEdit->loop();
-            if (!purchasesListEdit->closeWithoutSaving)
-            {
-                newMonthCreator->purchases = purchasesListEdit->getUpdatedPurchasesList();
-            }
+            // if (!purchasesListEdit->closeWithoutSaving)
+            // {
+            //     newMonthCreator->purchases = purchasesListEdit->getUpdatedPurchasesList();
+            // }
             break;
         case SAVE_LIST:
             saveList->setup();

@@ -22,4 +22,7 @@ public:
     void loop() override;
     void setCurrentScreen() override;
     int inputChar;
+
+    void to_json(json &j, const Purchase &purchase);
+    void from_json(const json &j, Purchase &purchase);
 };

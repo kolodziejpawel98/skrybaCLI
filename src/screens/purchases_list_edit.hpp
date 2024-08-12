@@ -21,8 +21,8 @@ public:
     void loop() override;
     void setCurrentScreen() override;
     int inputChar;
-    std::vector<Purchase> purchases;
-    bool closeWithoutSaving;
+    std::vector<Purchase> purchasesBackup;
+    // bool closeWithoutSaving;
 
     void savePurchasesAsButtons();
     void drawLabelDescription();

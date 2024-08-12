@@ -2,7 +2,7 @@
 
 void PurchasesListEdit::setup()
 {
-    closeWithoutSaving = false;
+    purchasesBackup = purchases;
     refreshScreenWithoutButtons();
     // debugPrint("PURCHASE LIST EDIT");
     buttons.clear();
@@ -47,7 +47,11 @@ void PurchasesListEdit::loop()
             {
                 if (starCursor == buttons.end() - 1)
                 {
-                    closeWithoutSaving = true;
+                    purchases = purchasesBackup;
+                }
+                else
+                {
+                    purchases = getUpdatedPurchasesList();
                 }
                 currentScreen = starCursor->getPointingToScreen();
             }

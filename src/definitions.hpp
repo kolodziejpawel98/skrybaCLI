@@ -5,6 +5,7 @@
 #include <memory>
 #include "decorations.hpp"
 #include "button.hpp"
+#include "purchase.hpp"
 #pragma once
 
 enum CurrentScreen
@@ -49,4 +50,5 @@ extern std::vector<std::string> categories;
 extern std::vector<Button> buttons;
 extern std::vector<Button>::iterator starCursor;
 extern std::vector<std::string> autofillDictionary;
+extern std::vector<Purchase> purchases;
 extern std::string checkAutofill(std::string wordPrefix);
