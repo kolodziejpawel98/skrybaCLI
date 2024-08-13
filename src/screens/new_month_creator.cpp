@@ -9,7 +9,7 @@ void NewMonthCreator::setup()
                                  Button("", FIRST_BUTTON_ROW - 1, FIRST_BUTTON_COL + 80)}));
     buttons.emplace_back(Button("Edit list", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, PURCHASES_LIST_EDIT));
     buttons.emplace_back(Button("Save list to JSON", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, SAVE_LIST));
-    buttons.emplace_back(Button("Back", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, NEW_MONTH_INTRO));
+    buttons.emplace_back(Button("Back", FIRST_BUTTON_ROW + buttons.size(), FIRST_BUTTON_COL, MAIN_MENU));
     if (!buttons.empty())
     {
         starCursor = buttons.begin();

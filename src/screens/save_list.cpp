@@ -14,13 +14,13 @@ void SaveList::setup()
 
     drawButtons();
 
-    std::ofstream outFile("../example.json");
+    // std::ofstream outFile("../example.json");
 
-    // json j;
-    json j = purchases.at(0);
+    // // json j;
+    // json j = purchases.at(0);
 
-    outFile << j.dump(4);
-    outFile.close();
+    // outFile << j.dump(4);
+    // outFile.close();
 
     // std::ifstream f("../example.json");
     // if (!f)
