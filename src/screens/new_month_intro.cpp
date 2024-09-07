@@ -56,7 +56,7 @@ void NewMonthIntro::loop()
             refreshScreen();
             if (inputWord.length() > 0)
             {
-                inputWord = checkAutofill(inputWord);
+                inputWord = checkAutofill(inputWord, autofillDictionary);
             }
             printTextInColor(
                 inputWord,
@@ -72,7 +72,7 @@ void NewMonthIntro::loop()
                 refreshScreen();
 
                 printTextInColor(
-                    checkAutofill(inputWord),
+                    checkAutofill(inputWord, autofillDictionary),
                     FIRST_BUTTON_ROW - 2,
                     LEFT_MARGIN,
                     textColor::white_black, false);

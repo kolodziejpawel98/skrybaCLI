@@ -22,5 +22,18 @@ public:
     std::string inputWord = "";
     // std::vector<Purchase> purchases;
     std::vector<Button>::iterator starCursorOnInterfaceElement;
+
+    std::vector<std::string> autofillDictionaryCategory = {
+        "spozywka",
+        "rzeczy",
+        "oplaty stale",
+        "transport (bez jakdojade)",
+        "transport (jakdojade)",
+        "jedzenie na miescie",
+        "jedzenie zamawiane"};
+    std::vector<std::string> autofillDictionaryShopName = {
+        "lidl",
+        "biedronka",
+        "zabka"};
     void drawEnteredPurchases();
 };

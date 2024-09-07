@@ -102,7 +102,14 @@ void NewMonthCreator::loop()
             refreshScreen();
             if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
             {
-                starCursor->getStarCursorOnSubbutton()->setLabelText(checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText()));
+                if (starCursor->getStarCursorOnSubbutton() == starCursor->getSubButtons().begin())
+                {
+                    starCursor->getStarCursorOnSubbutton()->setLabelText(checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText(), autofillDictionaryCategory));
+                }
+                else
+                {
+                    starCursor->getStarCursorOnSubbutton()->setLabelText(checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText(), autofillDictionaryShopName));
+                }
             }
             printTextInColor(
                 starCursor->getStarCursorOnSubbutton()->getLabelText(),
@@ -117,11 +124,23 @@ void NewMonthCreator::loop()
                 if (starCursor->getStarCursorOnSubbutton()->getLabelText().size() > 0)
                 {
                     refreshScreen();
-                    printTextInColor(
-                        checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText()),
-                        starCursor->getStarCursorOnSubbutton()->getRow(),
-                        starCursor->getStarCursorOnSubbutton()->getCol() + 5,
-                        textColor::white_black, false);
+                    if (starCursor->getStarCursorOnSubbutton() == starCursor->getSubButtons().begin())
+                    {
+                        printTextInColor(
+                            checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText(), autofillDictionaryCategory),
+                            starCursor->getStarCursorOnSubbutton()->getRow(),
+                            starCursor->getStarCursorOnSubbutton()->getCol() + 5,
+                            textColor::white_black, false);
+                    }
+                    else
+                    {
+                        printTextInColor(
+                            checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText(), autofillDictionaryShopName),
+                            starCursor->getStarCursorOnSubbutton()->getRow(),
+                            starCursor->getStarCursorOnSubbutton()->getCol() + 5,
+                            textColor::white_black, false);
+                    }
+
                     printTextInColor(
                         starCursor->getStarCursorOnSubbutton()->getLabelText(),
                         starCursor->getStarCursorOnSubbutton()->getRow(),

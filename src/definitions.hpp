@@ -51,4 +51,4 @@ extern std::vector<Button> buttons;
 extern std::vector<Button>::iterator starCursor;
 extern std::vector<std::string> autofillDictionary;
 extern std::vector<Purchase> purchases;
-extern std::string checkAutofill(std::string wordPrefix);
+extern std::string checkAutofill(std::string wordPrefix, std::vector<std::string> autofillDictionary);

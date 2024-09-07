@@ -68,33 +68,7 @@ std::vector<Button> buttons = {};
 std::vector<Button>::iterator starCursor = buttons.begin();
 std::vector<Purchase> purchases = {};
 
-std::vector<std::string> autofillDictionary = {
-    "styczen",
-    "luty",
-    "marzec",
-    "kwiecien",
-    "maj",
-    "czerwiec",
-    "lipiec",
-    "sierpien",
-    "wrzesien",
-    "pazdziernik",
-    "listopad",
-    "grudzien",
-    // ##########
-    "spozywka",
-    "rzeczy",
-    "oplaty stale",
-    "transport (bez jakdojade)",
-    "transport (jakdojade)",
-    "jedzenie na miescie",
-    "jedzenie zamawiane",
-    // ##########
-    "lidl",
-    "biedronka",
-    "zabka"};
-
-std::string checkAutofill(std::string wordPrefix)
+std::string checkAutofill(std::string wordPrefix, std::vector<std::string> autofillDictionary)
 {
     for (const auto &word : autofillDictionary)
     {
