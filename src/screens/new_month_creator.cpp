@@ -54,7 +54,7 @@ void NewMonthCreator::loop()
             drawEnteredPurchases();
             break;
         case '\n':
-            if (starCursor == buttons.end() - 1 or starCursor == buttons.end() - 2 or starCursor == buttons.end() - 3)
+            if (starCursor == buttons.end() - 1 or starCursor == buttons.end() - 2 or starCursor == buttons.end() - 3) // non purchase buttons
             {
                 currentScreen = starCursor->getPointingToScreen();
             }
@@ -62,11 +62,20 @@ void NewMonthCreator::loop()
             {
                 if (starCursor->getStarCursorOnSubbutton() != starCursor->getSubButtons().end() - 1)
                 {
+                    std::string a = "nope";
+                    if (checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText(), autofillDictionaryCategory) == starCursor->getStarCursorOnSubbutton()->getLabelText())
+                    {
+                        a = "yep";
+                    }
+                    // std::string a = starCursor->getStarCursorOnSubbutton()->getLabelText();
+                    // std::string b = checkAutofill(starCursor->getStarCursorOnSubbutton()->getLabelText(), autofillDictionaryCategory);
                     starCursor->getStarCursorOnSubbutton()++;
                     refreshScreen();
                     drawEnteredPurchases();
+                    debugPrint(a, 20, 20);
+                    // debugPrint(b, 21, 20);
                 }
-                else
+                else // adding purchase to puchases list
                 {
                     std::string categoryTmp;
                     std::string costTmp;
